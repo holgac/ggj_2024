@@ -36,7 +36,6 @@ func second_timer():
     wind_cooldown_label.hide()
     wind_time_left = rng.randi_range(min_wind_duration, max_wind_duration);
     next_wind_start = wind_time_left + rng.randi_range(min_cooldown, max_cooldown)
-    wind_direction = Vector2(rng.randf(), rng.randf()).normalized();
     wind_direction = Vector2(2 * rng.randf() - 1, 2 * rng.randf() - 1).normalized();
     wind_indicator.look_at(wind_indicator.global_position + wind_direction)
   elif next_wind_start < 5:

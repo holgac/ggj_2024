@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://bqn8taws2e81o"]
+[gd_scene load_steps=11 format=3 uid="uid://bqn8taws2e81o"]
 
 [ext_resource type="PackedScene" uid="uid://djscnw35pea44" path="res://scenes/Player.tscn" id="1_6o3xu"]
 [ext_resource type="Texture2D" uid="uid://fkrw05jmu2bp" path="res://icon.svg" id="2_1lt2v"]
 [ext_resource type="Script" path="res://scripts/Wind.gd" id="2_c5ggn"]
+[ext_resource type="Texture2D" uid="uid://nn0hdt5i7itj" path="res://textures/ice.jpg" id="2_ujwbj"]
 [ext_resource type="PackedScene" uid="uid://dpjy42knadd2o" path="res://scenes/Player2.tscn" id="4_ovhnt"]
+[ext_resource type="PackedScene" uid="uid://dctwj837036l3" path="res://scenes/Puller.tscn" id="6_6lwmc"]
+[ext_resource type="PackedScene" uid="uid://dqpasymlsem67" path="res://scenes/Pusher.tscn" id="7_3o4n1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_f7swx"]
 
@@ -13,7 +16,7 @@ size = Vector2(5000, 50)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_roi0t"]
 size = Vector2(50, 3600)
 
-[node name="Level" type="Node2D"]
+[node name="Game" type="Node2D"]
 
 [node name="HUD" type="Node" parent="."]
 
@@ -29,48 +32,53 @@ text = "5"
 position = Vector2(1, 0)
 zoom = Vector2(0.16, 0.16)
 
-[node name="Bounds" type="Node2D" parent="."]
+[node name="Level" type="Node2D" parent="."]
 
-[node name="Top" type="StaticBody2D" parent="Bounds"]
+[node name="Top" type="StaticBody2D" parent="Level"]
 position = Vector2(0, -1800)
 physics_material_override = SubResource("PhysicsMaterial_f7swx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Top"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Top"]
 shape = SubResource("RectangleShape2D_jouu3")
 
-[node name="Sprite2D" type="Sprite2D" parent="Bounds/Top"]
+[node name="Sprite2D" type="Sprite2D" parent="Level/Top"]
 scale = Vector2(40, 0.1)
 texture = ExtResource("2_1lt2v")
 
-[node name="Bottom" type="StaticBody2D" parent="Bounds"]
+[node name="Bottom" type="StaticBody2D" parent="Level"]
 position = Vector2(0, 1800)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Bottom"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Bottom"]
 shape = SubResource("RectangleShape2D_jouu3")
 
-[node name="Sprite2D" type="Sprite2D" parent="Bounds/Bottom"]
+[node name="Sprite2D" type="Sprite2D" parent="Level/Bottom"]
 scale = Vector2(40, 0.1)
 texture = ExtResource("2_1lt2v")
 
-[node name="Left" type="StaticBody2D" parent="Bounds"]
+[node name="Left" type="StaticBody2D" parent="Level"]
 position = Vector2(-2500, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Left"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Left"]
 shape = SubResource("RectangleShape2D_roi0t")
 
-[node name="Sprite2D" type="Sprite2D" parent="Bounds/Left"]
+[node name="Sprite2D" type="Sprite2D" parent="Level/Left"]
 scale = Vector2(0.1, 28)
 texture = ExtResource("2_1lt2v")
 
-[node name="Right" type="StaticBody2D" parent="Bounds"]
+[node name="Right" type="StaticBody2D" parent="Level"]
 position = Vector2(2500, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Right"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Right"]
 shape = SubResource("RectangleShape2D_roi0t")
 
-[node name="Sprite2D" type="Sprite2D" parent="Bounds/Right"]
+[node name="Sprite2D" type="Sprite2D" parent="Level/Right"]
 scale = Vector2(0.1, 31)
 texture = ExtResource("2_1lt2v")
+
+[node name="Sprite2D" type="Sprite2D" parent="Level"]
+position = Vector2(-1.50002, 11.5001)
+scale = Vector2(1.21851, 0.880615)
+texture = ExtResource("2_ujwbj")
 
 [node name="Wind" type="Node2D" parent="."]
 position = Vector2(0, -1900)
@@ -81,7 +89,6 @@ scale = Vector2(1, 0.2)
 texture = ExtResource("2_1lt2v")
 
 [node name="Timer" type="Timer" parent="Wind"]
-autostart = true
 
 [node name="Players" type="Node2D" parent="."]
 
@@ -90,4 +97,22 @@ position = Vector2(300, 0)
 player_id = "p1"
 
 [node name="Player2" parent="Players" instance=ExtResource("4_ovhnt")]
+position = Vector2(-321, 0)
 player_id = "p2"
+
+[node name="TrapManager" type="Node" parent="."]
+
+[node name="Puller" parent="TrapManager" instance=ExtResource("6_6lwmc")]
+
+[node name="Puller2" parent="TrapManager" instance=ExtResource("6_6lwmc")]
+position = Vector2(1221, -1015)
+
+[node name="Puller3" parent="TrapManager" instance=ExtResource("6_6lwmc")]
+position = Vector2(-1150, 1167)
+
+[node name="Pusher" parent="TrapManager" instance=ExtResource("7_3o4n1")]
+max_force = 6000
+
+[node name="Pusher2" parent="TrapManager" instance=ExtResource("7_3o4n1")]
+position = Vector2(-1617, -1012)
+max_force = 6000
