@@ -1,24 +1,27 @@
-[gd_scene load_steps=11 format=3 uid="uid://bqn8taws2e81o"]
+[gd_scene load_steps=12 format=3 uid="uid://bqn8taws2e81o"]
 
 [ext_resource type="PackedScene" uid="uid://djscnw35pea44" path="res://scenes/Player.tscn" id="1_6o3xu"]
 [ext_resource type="Texture2D" uid="uid://fkrw05jmu2bp" path="res://icon.svg" id="2_1lt2v"]
 [ext_resource type="Script" path="res://scripts/Wind.gd" id="2_c5ggn"]
+[ext_resource type="Script" path="res://scripts/HUD.gd" id="2_s4x8e"]
 [ext_resource type="Texture2D" uid="uid://nn0hdt5i7itj" path="res://textures/ice.jpg" id="2_ujwbj"]
 [ext_resource type="PackedScene" uid="uid://dpjy42knadd2o" path="res://scenes/Player2.tscn" id="4_ovhnt"]
-[ext_resource type="PackedScene" uid="uid://dctwj837036l3" path="res://scenes/Puller.tscn" id="6_6lwmc"]
+[ext_resource type="Script" path="res://scripts/Game.gd" id="6_7asge"]
 [ext_resource type="PackedScene" uid="uid://dqpasymlsem67" path="res://scenes/Pusher.tscn" id="7_3o4n1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_f7swx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jouu3"]
-size = Vector2(5000, 50)
+size = Vector2(8500, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_roi0t"]
 size = Vector2(50, 3600)
 
 [node name="Game" type="Node2D"]
+script = ExtResource("6_7asge")
 
 [node name="HUD" type="Node" parent="."]
+script = ExtResource("2_s4x8e")
 
 [node name="WindCooldown" type="Label" parent="HUD"]
 offset_left = 108.0
@@ -28,11 +31,28 @@ offset_bottom = -1855.0
 theme_override_font_sizes/font_size = 64
 text = "5"
 
+[node name="Player1Score" type="Label" parent="HUD"]
+offset_left = -1000.0
+offset_top = -1943.0
+offset_right = -837.0
+offset_bottom = -1855.0
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="Player2Score" type="Label" parent="HUD"]
+offset_left = 1000.0
+offset_top = -1943.0
+offset_right = 1163.0
+offset_bottom = -1855.0
+theme_override_font_sizes/font_size = 64
+text = "0"
+
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2(1, 0)
-zoom = Vector2(0.16, 0.16)
+zoom = Vector2(0.2, 0.2)
 
 [node name="Level" type="Node2D" parent="."]
+position = Vector2(0, 550)
 
 [node name="Top" type="StaticBody2D" parent="Level"]
 position = Vector2(0, -1800)
@@ -46,7 +66,7 @@ scale = Vector2(40, 0.1)
 texture = ExtResource("2_1lt2v")
 
 [node name="Bottom" type="StaticBody2D" parent="Level"]
-position = Vector2(0, 1800)
+position = Vector2(0, 1600)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Bottom"]
 shape = SubResource("RectangleShape2D_jouu3")
@@ -56,7 +76,7 @@ scale = Vector2(40, 0.1)
 texture = ExtResource("2_1lt2v")
 
 [node name="Left" type="StaticBody2D" parent="Level"]
-position = Vector2(-2500, 0)
+position = Vector2(-4100, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Left"]
 shape = SubResource("RectangleShape2D_roi0t")
@@ -66,7 +86,7 @@ scale = Vector2(0.1, 28)
 texture = ExtResource("2_1lt2v")
 
 [node name="Right" type="StaticBody2D" parent="Level"]
-position = Vector2(2500, 0)
+position = Vector2(4100, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Right"]
 shape = SubResource("RectangleShape2D_roi0t")
@@ -76,8 +96,8 @@ scale = Vector2(0.1, 31)
 texture = ExtResource("2_1lt2v")
 
 [node name="Sprite2D" type="Sprite2D" parent="Level"]
-position = Vector2(-1.50002, 11.5001)
-scale = Vector2(1.21851, 0.880615)
+position = Vector2(0, -100)
+scale = Vector2(2, 0.83)
 texture = ExtResource("2_ujwbj")
 
 [node name="Wind" type="Node2D" parent="."]
@@ -89,6 +109,8 @@ scale = Vector2(1, 0.2)
 texture = ExtResource("2_1lt2v")
 
 [node name="Timer" type="Timer" parent="Wind"]
+
+[node name="WindSound" type="AudioStreamPlayer" parent="Wind"]
 
 [node name="Players" type="Node2D" parent="."]
 
@@ -102,17 +124,15 @@ player_id = "p2"
 
 [node name="TrapManager" type="Node" parent="."]
 
-[node name="Puller" parent="TrapManager" instance=ExtResource("6_6lwmc")]
-
-[node name="Puller2" parent="TrapManager" instance=ExtResource("6_6lwmc")]
-position = Vector2(1221, -1015)
-
-[node name="Puller3" parent="TrapManager" instance=ExtResource("6_6lwmc")]
-position = Vector2(-1150, 1167)
-
 [node name="Pusher" parent="TrapManager" instance=ExtResource("7_3o4n1")]
 max_force = 6000
 
 [node name="Pusher2" parent="TrapManager" instance=ExtResource("7_3o4n1")]
-position = Vector2(-1617, -1012)
+position = Vector2(-2433, 445)
 max_force = 6000
+
+[node name="EventTimer" type="Timer" parent="."]
+
+[node name="PlayerPlayerHitSound" type="AudioStreamPlayer" parent="."]
+
+[node name="PlayerEnvironmentHitSound" type="AudioStreamPlayer" parent="."]

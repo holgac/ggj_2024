@@ -25,6 +25,8 @@ animations = [{
 collision_layer = 3
 physics_material_override = SubResource("PhysicsMaterial_ypydq")
 lock_rotation = true
+max_contacts_reported = 4
+contact_monitor = true
 script = ExtResource("1_2d51f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

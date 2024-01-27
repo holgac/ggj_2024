@@ -12,6 +12,7 @@ class_name GDPlayer
 @onready var max_velocity_squared: float = max_velocity * max_velocity;
 
 var dash_cur_cooldown = 0;
+var score = 0;
 # Called when the node enters the scene tree for the first time.
 func _ready():
   pass

@@ -38,11 +38,11 @@ func body_exited(body: Node2D):
   bodies.erase(body);
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
   for body: RigidBody2D in bodies:
-    var diff = body.global_position - global_position;
+    var diff = body.global_position - global_position
     var distance = diff.length()
-    var normal: Vector2 = diff * (1.0 / distance);
-    var force_ratio = distance / radius;
+    var normal: Vector2 = diff * (1.0 / distance)
+    var force_ratio = distance / radius
     force_ratio = cos(force_ratio * PI / 4)
     body.apply_force(normal * (force_ratio * cur_force * push_coef))

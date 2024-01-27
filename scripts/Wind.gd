@@ -6,7 +6,7 @@ class_name GDWind
 @export var wind_speed = 512000;
 @export var min_cooldown: int = 5;
 @export var max_cooldown: int = 10;
-@export var initial_wind_start: int = 2;
+@export var initial_wind_start: int = 60;
 @export var min_wind_duration: int = 4;
 @export var max_wind_duration: int = 10;
 
@@ -28,23 +28,30 @@ func _ready():
 
 func second_timer():
   next_wind_start -= 1
-  wind_time_left -= 1
-  if wind_time_left < 0:
-    wind_indicator.hide()
   if next_wind_start == 0:
     wind_indicator.show()
     wind_cooldown_label.hide()
-    wind_time_left = rng.randi_range(min_wind_duration, max_wind_duration);
-    next_wind_start = wind_time_left + rng.randi_range(min_cooldown, max_cooldown)
-    wind_direction = Vector2(2 * rng.randf() - 1, 2 * rng.randf() - 1).normalized();
-    wind_indicator.look_at(wind_indicator.global_position + wind_direction)
-  elif next_wind_start < 5:
-    wind_cooldown_label.show()
-    wind_cooldown_label.set_text(str(next_wind_start))
+    get_node('Timer').stop();
+  else:
+    wind_cooldown_label.set_text(str(next_wind_start));
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func start_wind(start_in: float, duration: float, direction: Vector2 = Vector2.ZERO):
+  next_wind_start = start_in
+  wind_time_left = duration + start_in;
+  wind_cooldown_label.show()
+  wind_cooldown_label.set_text(str(next_wind_start))
+  # wind_indicator.show();
+  if direction.length_squared() < 0.01:
+    wind_direction = Vector2(2 * rng.randf() - 1, 2 * rng.randf() - 1).normalized();
+  wind_indicator.look_at(wind_indicator.global_position + wind_direction)
+  get_node('Timer').start();
+  wind_cooldown_label.set_text(str(next_wind_start));
+
 func _process(delta):
-  if wind_time_left > 0:
+  if next_wind_start == 0 and wind_time_left > 0:
+    wind_time_left -= delta;
+    if wind_time_left <= 0:
+      wind_indicator.hide();
     for player: GDPlayer in players.get_children():
       player.apply_force(wind_direction * delta * wind_speed);
     
