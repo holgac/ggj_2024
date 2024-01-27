@@ -95,7 +95,6 @@ p2_attack={
 common/physics_ticks_per_second=120
 common/max_physics_steps_per_frame=16
 2d/default_gravity=0.0
-2d/default_linear_damp=0.1
 
 [rendering]
 
