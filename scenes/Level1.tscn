@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqn8taws2e81o"]
+
+[ext_resource type="PackedScene" uid="uid://djscnw35pea44" path="res://scenes/Player.tscn" id="1_6o3xu"]
+[ext_resource type="Texture2D" uid="uid://fkrw05jmu2bp" path="res://icon.svg" id="2_1lt2v"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_f7swx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jouu3"]
+size = Vector2(5000, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_roi0t"]
+size = Vector2(5, 4000)
+
+[node name="Level" type="Node2D"]
+
+[node name="Player1" parent="." instance=ExtResource("1_6o3xu")]
+player_id = "p1"
+
+[node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2(0.125, 0.125)
+
+[node name="Bounds" type="Node2D" parent="."]
+
+[node name="Top" type="StaticBody2D" parent="Bounds"]
+position = Vector2(0, -2000)
+physics_material_override = SubResource("PhysicsMaterial_f7swx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Top"]
+shape = SubResource("RectangleShape2D_jouu3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Bounds/Top"]
+scale = Vector2(40, 0.1)
+texture = ExtResource("2_1lt2v")
+
+[node name="Bottom" type="StaticBody2D" parent="Bounds"]
+position = Vector2(0, 2000)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Bottom"]
+shape = SubResource("RectangleShape2D_jouu3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Bounds/Bottom"]
+scale = Vector2(40, 0.1)
+texture = ExtResource("2_1lt2v")
+
+[node name="Left" type="StaticBody2D" parent="Bounds"]
+position = Vector2(-2500, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Left"]
+shape = SubResource("RectangleShape2D_roi0t")
+
+[node name="Sprite2D" type="Sprite2D" parent="Bounds/Left"]
+scale = Vector2(0.1, 31)
+texture = ExtResource("2_1lt2v")
+
+[node name="Right" type="StaticBody2D" parent="Bounds"]
+position = Vector2(2500, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Right"]
+shape = SubResource("RectangleShape2D_roi0t")
+
+[node name="Sprite2D" type="Sprite2D" parent="Bounds/Right"]
+scale = Vector2(0.1, 31)
+texture = ExtResource("2_1lt2v")

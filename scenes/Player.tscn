@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://djscnw35pea44"]
+
+[ext_resource type="Script" path="res://scripts/Player.gd" id="1_2d51f"]
+[ext_resource type="Texture2D" uid="uid://bvo560wej1oli" path="res://textures/face_neutral.png" id="1_voeg4"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ypydq"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d6jut"]
+radius = 115.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e711b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_voeg4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="RigidBody2D" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_ypydq")
+lock_rotation = true
+script = ExtResource("1_2d51f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_d6jut")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_e711b")
