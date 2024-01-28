@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://6ng51kmtojrt" path="res://scenes/HUD.tscn" id="2_aidpv"]
 [ext_resource type="Script" path="res://scripts/Wind.gd" id="2_c5ggn"]
 [ext_resource type="Texture2D" uid="uid://nn0hdt5i7itj" path="res://textures/ice.jpg" id="2_ujwbj"]
-[ext_resource type="PackedScene" uid="uid://lnp0bpwmnl1k" path="res://scenes/Checkpoint.tscn" id="4_76juj"]
+[ext_resource type="PackedScene" path="res://scenes/Checkpoint.tscn" id="4_76juj"]
 [ext_resource type="PackedScene" uid="uid://dctwj837036l3" path="res://scenes/Puller.tscn" id="6_6lwmc"]
 [ext_resource type="Script" path="res://scripts/Game.gd" id="6_7asge"]
 [ext_resource type="PackedScene" uid="uid://dqpasymlsem67" path="res://scenes/Pusher.tscn" id="7_3o4n1"]
@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://co08siig2sr7m" path="res://scenes/Cannon.tscn" id="12_r23l0"]
 [ext_resource type="AudioStream" uid="uid://l6gkb3e5m7ly" path="res://audio/foley/playerplayer.wav" id="14_gkm2r"]
 [ext_resource type="AudioStream" uid="uid://djowa8chir31g" path="res://audio/foley/snowballhit.wav" id="15_42qu6"]
-[ext_resource type="PackedScene" uid="uid://bloum6r8r1opx" path="res://scenes/MusicPlayer.tscn" id="16_0clq8"]
+[ext_resource type="PackedScene" path="res://scenes/MusicPlayer.tscn" id="16_0clq8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_f7swx"]
 
@@ -128,12 +128,20 @@ position = Vector2(-2842, 1250)
 position = Vector2(2490, 1250)
 
 [node name="Marker2D3" type="Marker2D" parent="EventData/Pushers"]
-position = Vector2(2530, -695)
+position = Vector2(2506, -503)
 
 [node name="Marker2D4" type="Marker2D" parent="EventData/Pushers"]
-position = Vector2(-2963, -695)
+position = Vector2(-2879, -419)
+
+[node name="Marker2D5" type="Marker2D" parent="EventData/Pushers"]
+position = Vector2(2, 266)
 
 [node name="Checkpoints" type="Node" parent="EventData"]
+
+[node name="Marker2D4" type="Marker2D" parent="EventData/Checkpoints"]
+position = Vector2(-3642, 1759)
+rotation = -1.60257
+scale = Vector2(1, 1)
 
 [node name="Marker2D" type="Marker2D" parent="EventData/Checkpoints"]
 position = Vector2(0, 800)
@@ -145,6 +153,16 @@ rotation = 3.14159
 [node name="Marker2D3" type="Marker2D" parent="EventData/Checkpoints"]
 position = Vector2(-3588, -800)
 rotation = 2.34031
+
+[node name="Marker2D5" type="Marker2D" parent="EventData/Checkpoints"]
+position = Vector2(3627, 1795)
+rotation = 3.07805
+scale = Vector2(1, 1)
+
+[node name="Marker2D6" type="Marker2D" parent="EventData/Checkpoints"]
+position = Vector2(3609, -785)
+rotation = -0.127076
+scale = Vector2(0.999999, 0.999999)
 
 [node name="Cannons" type="Node" parent="EventData"]
 

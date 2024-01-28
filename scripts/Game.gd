@@ -28,17 +28,61 @@ func fill_events_for_first_level():
   # events are game modes
   events.append({'type': 'chase', 'duration': -1, 'score': 2})
   events.append({'type': 'checkpoint', 'duration': 60, 'score': -1})
+  events.append({'type': 'chase', 'duration': 60, 'score': -1})
+  events.append({'type': 'checkpoint', 'duration': 60, 'score': -1})
+  events.append({'type': 'chase', 'duration': 60, 'score': -1})
 
   # sub events are traps and other stuff that makes the level harder/more interesting
-  subEvents.append({'type': 'wind', 'wait_time': 5, 'duration':3, 'warn': 5})
-  subEvents.append({'type': 'pusher', 'wait_time': 1, 'duration': 60, 'count': 4})
-  for i in range(60):
+  subEvents.append({'type': 'nothing', 'wait_time': 30, 'duration': 30, 'count': 1})
+  subEvents.append({'type': 'pusher', 'wait_time': 5, 'duration': 5, 'count': 2})
+  subEvents.append({'type': 'pusher', 'wait_time': 5, 'duration': 5, 'count': 2})
+  subEvents.append({'type': 'pusher', 'wait_time': 15, 'duration': 5, 'count': 3})
+  for i in range(30):
     subEvents.append({'type': 'cannon', 'wait_time': 1, 'count': 1 + (i%4)});
-  subEvents.append({'type': 'wind', 'wait_time': 5, 'duration':3, 'warn': 5})
-  subEvents.append({'type': 'cannon', 'wait_time': 30, 'count': 5})
-  subEvents.append({'type': 'cannon', 'wait_time': 2, 'count': 5})
-  subEvents.append({'type': 'cannon', 'wait_time': 2, 'count': 5});
-  subEvents.append({'type': 'wind', 'wait_time': 7, 'duration':2, 'warn': 5});
+  subEvents.append({'type': 'nothing', 'wait_time': 10, 'duration': 10, 'count': 1})
+  subEvents.append({'type': 'wind', 'wait_time': 13, 'duration':3, 'warn': 5})
+  subEvents.append({'type': 'wind', 'wait_time': 13, 'duration':3, 'warn': 5})
+  subEvents.append({'type': 'nothing', 'wait_time': 10, 'duration': 10, 'count': 1})
+  
+  subEvents.append({'type': 'wind', 'wait_time': 0, 'duration':3, 'warn': 5})
+  for i in range(10):
+    subEvents.append({'type': 'cannon', 'wait_time': 1, 'count': 1 + (i%4)});
+  subEvents.append({'type': 'wind', 'wait_time': 0, 'duration':3, 'warn': 5})
+  for i in range(10):
+    subEvents.append({'type': 'cannon', 'wait_time': 1, 'count': 1 + (i%4)});
+  subEvents.append({'type': 'wind', 'wait_time': 0, 'duration':3, 'warn': 5})
+  for i in range(10):
+    subEvents.append({'type': 'cannon', 'wait_time': 1, 'count': 1 + (i%4)});
+  subEvents.append({'type': 'nothing', 'wait_time': 10, 'duration': 10, 'count': 1})
+  
+  subEvents.append({'type': 'pusher', 'wait_time': 5, 'duration': 10, 'count': 2})
+  for i in range(5):
+    subEvents.append({'type': 'cannon', 'wait_time': 1, 'count': 1 + (i%4)});
+  subEvents.append({'type': 'pusher', 'wait_time': 5, 'duration': 10, 'count': 2})
+  for i in range(5):
+    subEvents.append({'type': 'cannon', 'wait_time': 1, 'count': 1 + (i%4)});
+  subEvents.append({'type': 'pusher', 'wait_time': 5, 'duration': 10, 'count': 2})
+  for i in range(5):
+    subEvents.append({'type': 'cannon', 'wait_time': 1, 'count': 1 + (i%4)});
+  subEvents.append({'type': 'nothing', 'wait_time': 10, 'duration': 10, 'count': 1})
+  
+  subEvents.append({'type': 'pusher', 'wait_time': 0, 'duration': 10, 'count': 2})
+  subEvents.append({'type': 'wind', 'wait_time': 10, 'duration':3, 'warn': 5})
+  subEvents.append({'type': 'pusher', 'wait_time': 0, 'duration': 10, 'count': 2})
+  subEvents.append({'type': 'wind', 'wait_time': 10, 'duration':3, 'warn': 5})
+  subEvents.append({'type': 'pusher', 'wait_time': 0, 'duration': 10, 'count': 2})
+  subEvents.append({'type': 'wind', 'wait_time': 10, 'duration':3, 'warn': 5})
+  subEvents.append({'type': 'nothing', 'wait_time': 10, 'duration': 10, 'count': 1})
+  
+  subEvents.append({'type': 'pusher', 'wait_time': 0, 'duration': 10, 'count': 2})
+  subEvents.append({'type': 'wind', 'wait_time': 10, 'duration':3, 'warn': 5})
+  for i in range(5):
+    subEvents.append({'type': 'cannon', 'wait_time': 1, 'count': 1 + (i%4)});
+  subEvents.append({'type': 'pusher', 'wait_time': 0, 'duration': 10, 'count': 2})
+  subEvents.append({'type': 'wind', 'wait_time': 10, 'duration':3, 'warn': 5})
+  for i in range(10):
+    subEvents.append({'type': 'cannon', 'wait_time': 1, 'count': 1 + (i%4)});
+  subEvents.append({'type': 'nothing', 'wait_time': 20, 'duration': 20, 'count': 1})
 
 func _ready():
   fill_events_for_first_level()

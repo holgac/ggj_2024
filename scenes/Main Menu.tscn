@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://eaj8tkfbiug"]
+[gd_scene load_steps=3 format=3 uid="uid://dbjg3p2m2y0bb"]
 
 [ext_resource type="Texture2D" uid="uid://5blgdn0wm5d" path="res://textures/buton_rectangul.png" id="1_fsou4"]
-[ext_resource type="Texture2D" uid="uid://4o3bqn5vkrj3" path="res://textures/buton_rectangular_buyuk.png" id="2_7tr64"]
+[ext_resource type="Texture2D" path="res://textures/buton_rectangular_buyuk.png" id="2_7tr64"]
 
 [node name="MaimMenu" type="Control"]
 layout_mode = 3
@@ -26,6 +26,7 @@ text = "Play
 "
 
 [node name="CreditsButton" type="TextureButton" parent="."]
+layout_mode = 0
 offset_left = 708.0
 offset_top = 661.0
 offset_right = 1220.0
@@ -49,6 +50,7 @@ scale = Vector2(0.695283, 1.27405)
 texture = ExtResource("2_7tr64")
 
 [node name="CreditsText" type="Label" parent="."]
+layout_mode = 0
 offset_left = 641.0
 offset_top = 154.0
 offset_right = 1294.0
