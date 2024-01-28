@@ -21,6 +21,5 @@ func _deferred_goto_scene(path):
     current_scene.free();
   var s = ResourceLoader.load(path);
   current_scene = s.instantiate();
-  current_scene.get_tree();
   get_tree().root.add_child(current_scene);
   get_tree().current_scene = current_scene;
