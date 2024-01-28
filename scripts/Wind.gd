@@ -11,6 +11,7 @@ class_name GDWind
 @export var max_wind_duration: int = 10;
 
 @onready var wind_cooldown_label: Label = get_node("../HUD/WindCountdown_Frame/WindCooldown")
+@onready var wind_ui: Control = get_node("../HUD/Wind_UI")
 @onready var wind_indicator: Node2D = get_node("Sprite2D")
 @onready var players: Node2D = get_node("../Players")
 var wind_time_left = 0;
@@ -23,13 +24,14 @@ var rng = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 func _ready():
   get_node('Timer').connect('timeout', second_timer)
-  wind_indicator.hide()
-  wind_cooldown_label.hide()
+  wind_indicator.get_parent().hide()
+  wind_ui.hide();
+  wind_cooldown_label.get_parent().hide()
 
 func second_timer():
   next_wind_start -= 1
   if next_wind_start == 0:
-    wind_cooldown_label.hide()
+    wind_cooldown_label.get_parent().hide()
     get_node('Timer').stop();
     get_node('WindSound').play();
   else:
@@ -38,7 +40,7 @@ func second_timer():
 func start_wind(start_in: float, duration: float, direction: Vector2 = Vector2.ZERO):
   next_wind_start = start_in
   wind_time_left = duration;
-  wind_cooldown_label.show()
+  wind_cooldown_label.get_parent().show()
   wind_cooldown_label.set_text(str(next_wind_start))
   # wind_indicator.show();
   if direction.length_squared() < 0.01:
@@ -46,13 +48,15 @@ func start_wind(start_in: float, duration: float, direction: Vector2 = Vector2.Z
   wind_indicator.look_at(wind_indicator.global_position + wind_direction)
   get_node('Timer').start();
   wind_cooldown_label.set_text(str(next_wind_start));
-  wind_indicator.show()
+  wind_indicator.get_parent().show()
+  wind_ui.show();
 
 func _process(delta):
   if next_wind_start == 0 and wind_time_left > 0:
     wind_time_left -= delta;
     if wind_time_left <= 0:
-      wind_indicator.hide();
+      wind_indicator.get_parent().hide();
+      wind_ui.hide();
     for player: GDPlayer in players.get_children():
       player.apply_force(wind_direction * delta * wind_speed);
     

@@ -30,6 +30,7 @@ func fill_events_for_first_level():
   events.append({'type': 'checkpoint', 'duration': 60, 'score': -1})
 
   # sub events are traps and other stuff that makes the level harder/more interesting
+  subEvents.append({'type': 'wind', 'wait_time': 5, 'duration':3, 'warn': 5})
   subEvents.append({'type': 'pusher', 'wait_time': 1, 'duration': 60, 'count': 4})
   for i in range(60):
     subEvents.append({'type': 'cannon', 'wait_time': 1, 'count': 1 + (i%4)});
