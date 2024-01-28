@@ -37,7 +37,7 @@ func second_timer():
 
 func start_wind(start_in: float, duration: float, direction: Vector2 = Vector2.ZERO):
   next_wind_start = start_in
-  wind_time_left = duration + start_in;
+  wind_time_left = duration;
   wind_cooldown_label.show()
   wind_cooldown_label.set_text(str(next_wind_start))
   # wind_indicator.show();

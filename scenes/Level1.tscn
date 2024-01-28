@@ -1,11 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://bqn8taws2e81o"]
+[gd_scene load_steps=15 format=3 uid="uid://bqn8taws2e81o"]
 
 [ext_resource type="PackedScene" uid="uid://djscnw35pea44" path="res://scenes/Player.tscn" id="1_6o3xu"]
 [ext_resource type="Texture2D" uid="uid://fkrw05jmu2bp" path="res://icon.svg" id="2_1lt2v"]
-[ext_resource type="PackedScene" uid="uid://gyjpncn1p0t6" path="res://scenes/HUD.tscn" id="2_aidpv"]
+[ext_resource type="PackedScene" path="res://scenes/HUD.tscn" id="2_aidpv"]
 [ext_resource type="Script" path="res://scripts/Wind.gd" id="2_c5ggn"]
 [ext_resource type="Texture2D" uid="uid://nn0hdt5i7itj" path="res://textures/ice.jpg" id="2_ujwbj"]
+[ext_resource type="PackedScene" uid="uid://lnp0bpwmnl1k" path="res://scenes/Checkpoint.tscn" id="4_76juj"]
 [ext_resource type="PackedScene" uid="uid://dpjy42knadd2o" path="res://scenes/Player2.tscn" id="4_ovhnt"]
+[ext_resource type="PackedScene" uid="uid://dctwj837036l3" path="res://scenes/Puller.tscn" id="6_6lwmc"]
 [ext_resource type="Script" path="res://scripts/Game.gd" id="6_7asge"]
 [ext_resource type="PackedScene" uid="uid://dqpasymlsem67" path="res://scenes/Pusher.tscn" id="7_3o4n1"]
 [ext_resource type="Texture2D" uid="uid://dhetqxp3hlgab" path="res://textures/windindicater.png" id="12_8840u"]
@@ -20,6 +22,9 @@ size = Vector2(50, 3600)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("6_7asge")
+PusherScene = ExtResource("7_3o4n1")
+PullerScene = ExtResource("6_6lwmc")
+CheckpointScene = ExtResource("4_76juj")
 
 [node name="HUD" parent="." instance=ExtResource("2_aidpv")]
 
@@ -98,17 +103,45 @@ player_id = "p1"
 position = Vector2(-321, 0)
 player_id = "p2"
 
-[node name="TrapManager" type="Node" parent="."]
+[node name="EventData" type="Node" parent="."]
 
-[node name="Pusher" parent="TrapManager" instance=ExtResource("7_3o4n1")]
-max_force = 6000
+[node name="Pushers" type="Node" parent="EventData"]
 
-[node name="Pusher2" parent="TrapManager" instance=ExtResource("7_3o4n1")]
-position = Vector2(-2433, 445)
-max_force = 6000
+[node name="Marker2D" type="Marker2D" parent="EventData/Pushers"]
+position = Vector2(-2842, 1250)
+
+[node name="Marker2D2" type="Marker2D" parent="EventData/Pushers"]
+position = Vector2(2490, 1250)
+
+[node name="Marker2D3" type="Marker2D" parent="EventData/Pushers"]
+position = Vector2(2530, -695)
+
+[node name="Marker2D4" type="Marker2D" parent="EventData/Pushers"]
+position = Vector2(-2963, -695)
+
+[node name="Checkpoints" type="Node" parent="EventData"]
+
+[node name="Marker2D" type="Marker2D" parent="EventData/Checkpoints"]
+position = Vector2(0, 800)
+
+[node name="Marker2D2" type="Marker2D" parent="EventData/Checkpoints"]
+position = Vector2(0, -800)
+rotation = 3.14159
+
+[node name="Marker2D3" type="Marker2D" parent="EventData/Checkpoints"]
+position = Vector2(-3588, -800)
+rotation = 2.34031
 
 [node name="EventTimer" type="Timer" parent="."]
+
+[node name="SubEventTimer" type="Timer" parent="."]
 
 [node name="PlayerPlayerHitSound" type="AudioStreamPlayer" parent="."]
 
 [node name="PlayerEnvironmentHitSound" type="AudioStreamPlayer" parent="."]
+
+[node name="EventNodes" type="Node" parent="."]
+
+[node name="Checkpoints" type="Node" parent="EventNodes"]
+
+[node name="Pushers" type="Node" parent="EventNodes"]
