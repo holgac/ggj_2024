@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/HUD.gd" id="1_m31br"]
 [ext_resource type="Texture2D" uid="uid://5blgdn0wm5d" path="res://textures/buton_rectangul.png" id="2_7cbkr"]
-[ext_resource type="Texture2D" uid="uid://4o3bqn5vkrj3" path="res://textures/buton_rectangular_buyuk.png" id="3_cwrim"]
+[ext_resource type="Texture2D" path="res://textures/buton_rectangular_buyuk.png" id="3_cwrim"]
 [ext_resource type="Texture2D" uid="uid://dou4tj5op6ptq" path="res://textures/buton_pink.png" id="3_o4ia1"]
 [ext_resource type="Texture2D" uid="uid://bvo560wej1oli" path="res://textures/face_neutral.png" id="4_bkjvp"]
 [ext_resource type="Texture2D" uid="uid://bbuustwyeqhjb" path="res://textures/face_monkey.png" id="5_6ht4q"]
@@ -26,6 +26,7 @@ texture = ExtResource("3_o4ia1")
 
 [node name="WindCooldown" type="Label" parent="WindCountdown_Frame"]
 modulate = Color(1, 0.901961, 0.901961, 1)
+layout_mode = 0
 offset_left = 166.667
 offset_top = -11.6666
 offset_right = 371.667
@@ -43,6 +44,7 @@ offset_bottom = -1621.0
 texture = ExtResource("3_cwrim")
 
 [node name="Player1_Frame" type="TextureRect" parent="TopUI_Frame"]
+layout_mode = 0
 offset_left = 1152.0
 offset_top = 333.0
 offset_right = 1664.0
@@ -50,9 +52,10 @@ offset_bottom = 845.0
 texture = ExtResource("3_o4ia1")
 
 [node name="Player1Score" type="Label" parent="TopUI_Frame/Player1_Frame"]
-offset_left = 141.0
+layout_mode = 0
+offset_left = 37.0
 offset_top = -22.0
-offset_right = 369.0
+offset_right = 265.0
 offset_bottom = 524.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 400
@@ -77,9 +80,10 @@ offset_bottom = 846.0
 texture = ExtResource("3_o4ia1")
 
 [node name="Player2Score" type="Label" parent="TopUI_Frame/Player2_Frame"]
-offset_left = 145.0
+layout_mode = 0
+offset_left = 41.0
 offset_top = -28.0
-offset_right = 373.0
+offset_right = 269.0
 offset_bottom = 518.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 400
@@ -95,6 +99,7 @@ offset_bottom = 885.0
 texture = ExtResource("3_o4ia1")
 
 [node name="GameCountdown" type="Label" parent="TopUI_Frame"]
+layout_mode = 0
 offset_left = 2206.0
 offset_top = 300.0
 offset_right = 4314.0
