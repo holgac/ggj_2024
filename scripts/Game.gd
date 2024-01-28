@@ -71,6 +71,7 @@ func player_body_entered(body_rid: RID, node: Node, body_shape_idx: int, local_i
     get_node('PlayerSnowballHitSound').play();
     node.queue_free();
     player.incrementPukeMeter(0.3);
+    player.freeze();
   else:
     player.incrementPukeMeter(0.6);
     player.get_node('PlayerEnvironmentHitSound').play();

@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://djscnw35pea44"]
+[gd_scene load_steps=24 format=3 uid="uid://djscnw35pea44"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_2d51f"]
 [ext_resource type="Texture2D" uid="uid://bsn4ow6qhpsx8" path="res://face_textures/monkey_cry.png" id="2_1f0gc"]
 [ext_resource type="AudioStream" uid="uid://38m8snwqfql7" path="res://audio/foley/playerenv.wav" id="3_7drt1"]
 [ext_resource type="Texture2D" uid="uid://c78dpj4hin3rq" path="res://face_textures/monkey_dizzy.png" id="3_80cuk"]
 [ext_resource type="Texture2D" uid="uid://cerh7dhde6db2" path="res://face_textures/monkey_dizzy2.png" id="4_26hlu"]
+[ext_resource type="Texture2D" uid="uid://cbdeyh0tal43o" path="res://face_textures/monkey_freeze.png" id="5_kwb38"]
 [ext_resource type="Texture2D" uid="uid://dwm284hlrawj3" path="res://face_textures/monkey_laugh.png" id="5_ogj5g"]
 [ext_resource type="Texture2D" uid="uid://bn3qrt5d40fac" path="res://face_textures/monkey_neutral.png" id="6_wi5di"]
 [ext_resource type="Texture2D" uid="uid://cawdkbatxhbpv" path="res://face_textures/monkey_sad.png" id="7_bftwd"]
@@ -14,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://bnat1jkwr4bg1" path="res://face_textures/ninja_dizzy.png" id="11_bdbwm"]
 [ext_resource type="Texture2D" uid="uid://bk2v6ujrcg4e8" path="res://face_textures/ninja_dizzy2.png" id="12_5wim7"]
 [ext_resource type="Texture2D" uid="uid://bdf51650aijk4" path="res://face_textures/ninja_laugh.png" id="13_rc1bu"]
+[ext_resource type="Texture2D" uid="uid://pd703xt84upo" path="res://face_textures/ninja_freeze.png" id="14_5av7h"]
 [ext_resource type="Texture2D" uid="uid://bcyo7tyd1kxq7" path="res://face_textures/ninja_neutral.png" id="14_rdat7"]
 [ext_resource type="Texture2D" uid="uid://bhnpe6p6rdp4q" path="res://face_textures/ninja_sad.png" id="15_6c61j"]
 [ext_resource type="Texture2D" uid="uid://r8v6v7va8j0n" path="res://face_textures/ninja_tongue.png" id="16_tt052"]
@@ -50,6 +52,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"monkey_dizzy2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_kwb38")
+}],
+"loop": true,
+"name": &"monkey_freeze",
 "speed": 5.0
 }, {
 "frames": [{
@@ -118,6 +128,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("14_5av7h")
+}],
+"loop": true,
+"name": &"ninja_freeze",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("13_rc1bu")
 }],
 "loop": true,
@@ -170,7 +188,7 @@ shape = SubResource("CircleShape2D_d6jut")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_cbkhv")
-animation = &"monkey_sad"
+animation = &"ninja_freeze"
 
 [node name="PlayerEnvironmentHitSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_7drt1")

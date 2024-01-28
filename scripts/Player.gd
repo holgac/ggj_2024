@@ -6,9 +6,6 @@ class_name GDPlayer
 @export var attack_speed: float = 10000;
 @export var attack_speed_on_victim: float = -1000;
 @export var max_velocity: float = 5000;
-@export var dash_speed: float = 10000;
-@export var dash_cooldown: float = 0.3;
-@export var dash_duration: float = 0.1;
 @onready var max_velocity_squared: float = max_velocity * max_velocity;
 @onready var pukeCooldown = 10.0;
 @export var pukeCooldownRatio = 0.7;
@@ -18,13 +15,19 @@ class_name GDPlayer
 @export var PukeScene: PackedScene;
 @export var puke_count: int = 4;
 @export var puke_cooldown: float = 0.1;
+@export var freeze_cooldown: float = 2.0;
+var last_freeze: float = 0;
 var last_puke: float = 0;
 var puke_remaining: int = 0;
 
 var pukeMeter: float = 0;
-var dash_cur_cooldown = 0;
 var score = 0;
 var game: GDGame;
+
+
+func freeze():
+  last_freeze = freeze_cooldown;
+  setAnim('freeze')
 
 func incrementPukeMeter(coef: float = 1.0):
   pukeMeter += coef * linear_velocity.length() * pukeVelocityCoef;
@@ -64,9 +67,16 @@ func recalculate_face():
         setAnim('sad')
       else:
         setAnim('cry')
+    
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
+  last_freeze -= delta;
+  if last_freeze > 0:
+    return;
+  if pukeMeter > 0:
+    var pukeMeterInASec = pukeMeter * pukeCooldownRatio;
+    var change = (pukeMeter - pukeMeterInASec) * delta;
+    pukeMeter = max(pukeMeter - change, 0);
   recalculate_face();
   last_puke -= delta;
   if last_puke < 0 and puke_remaining > 0:
@@ -76,18 +86,6 @@ func _process(delta):
     puke.transform = transform;
     get_tree().root.add_child(puke);
     pukeMeter = 0.0;
-    
-
-func is_dashing():
-  return (dash_cooldown - dash_cur_cooldown) < dash_duration
-
-func _physics_process(delta):
-  if pukeMeter > 0:
-    var pukeMeterInASec = pukeMeter * pukeCooldownRatio;
-    var change = (pukeMeter - pukeMeterInASec) * delta;
-    pukeMeter = max(pukeMeter - change, 0);
-    print(name, 'puke:', pukeMeter);
-  dash_cur_cooldown -= delta;
   var movement = Vector2.ZERO;
   if Input.is_action_pressed(player_id + "_left"):
     movement.x -= 1;
@@ -99,8 +97,6 @@ func _physics_process(delta):
     movement.y += 1;
   if movement.length_squared() > 0.1:
     movement = movement.normalized();
-  if Input.is_action_just_pressed(player_id + "_dash"):
-    try_dash(movement)
   if movement.length_squared() > 0.1:
      movement = movement * delta * speed;
   if linear_velocity.length_squared() > max_velocity_squared:
@@ -114,11 +110,6 @@ func _physics_process(delta):
   if Input.is_action_just_pressed(player_id + "_attack"):
     try_attack()
 
-func try_dash(movement: Vector2):
-  if dash_cur_cooldown > 0 or movement.length_squared() < 0.01:
-    return
-  dash_cur_cooldown = dash_cooldown
-  apply_impulse(movement * dash_speed);
 
 func try_attack():
   var query = PhysicsShapeQueryParameters2D.new()
