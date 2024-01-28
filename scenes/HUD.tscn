@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://6ng51kmtojrt"]
+[gd_scene load_steps=10 format=3 uid="uid://gyjpncn1p0t6"]
 
 [ext_resource type="Script" path="res://scripts/HUD.gd" id="1_m31br"]
 [ext_resource type="Texture2D" uid="uid://5blgdn0wm5d" path="res://textures/buton_rectangul.png" id="2_7cbkr"]

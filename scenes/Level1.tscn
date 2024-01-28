@@ -1,8 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://bqn8taws2e81o"]
+[gd_scene load_steps=19 format=3 uid="uid://bqn8taws2e81o"]
 
 [ext_resource type="PackedScene" uid="uid://djscnw35pea44" path="res://scenes/Player.tscn" id="1_6o3xu"]
 [ext_resource type="Texture2D" uid="uid://fkrw05jmu2bp" path="res://icon.svg" id="2_1lt2v"]
-[ext_resource type="PackedScene" uid="uid://6ng51kmtojrt" path="res://scenes/HUD.tscn" id="2_aidpv"]
+[ext_resource type="PackedScene" uid="uid://gyjpncn1p0t6" path="res://scenes/HUD.tscn" id="2_aidpv"]
 [ext_resource type="Script" path="res://scripts/Wind.gd" id="2_c5ggn"]
 [ext_resource type="Texture2D" uid="uid://nn0hdt5i7itj" path="res://textures/ice.jpg" id="2_ujwbj"]
 [ext_resource type="PackedScene" path="res://scenes/Checkpoint.tscn" id="4_76juj"]
@@ -11,8 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dqpasymlsem67" path="res://scenes/Pusher.tscn" id="7_3o4n1"]
 [ext_resource type="AudioStream" uid="uid://dy42l5gx82ndx" path="res://audio/foley/wind.wav" id="10_1drlv"]
 [ext_resource type="Texture2D" uid="uid://dhetqxp3hlgab" path="res://textures/windindicater.png" id="12_8840u"]
-[ext_resource type="PackedScene" uid="uid://byubg2hpsnjks" path="res://scenes/Puke.tscn" id="12_pmbo4"]
-[ext_resource type="PackedScene" uid="uid://co08siig2sr7m" path="res://scenes/Cannon.tscn" id="12_r23l0"]
+[ext_resource type="PackedScene" path="res://scenes/Cannon.tscn" id="12_r23l0"]
 [ext_resource type="AudioStream" uid="uid://l6gkb3e5m7ly" path="res://audio/foley/playerplayer.wav" id="14_gkm2r"]
 [ext_resource type="AudioStream" uid="uid://djowa8chir31g" path="res://audio/foley/snowballhit.wav" id="15_42qu6"]
 [ext_resource type="PackedScene" path="res://scenes/MusicPlayer.tscn" id="16_0clq8"]
@@ -108,14 +107,10 @@ stream = ExtResource("10_1drlv")
 [node name="Player1" parent="Players" instance=ExtResource("1_6o3xu")]
 position = Vector2(-500, 0)
 player_id = "p1"
-playerType = "ninja"
-PukeScene = ExtResource("12_pmbo4")
 
 [node name="Player2" parent="Players" instance=ExtResource("1_6o3xu")]
 position = Vector2(500, 0)
 player_id = "p2"
-playerType = "monkey"
-PukeScene = ExtResource("12_pmbo4")
 
 [node name="EventData" type="Node" parent="."]
 
@@ -139,9 +134,8 @@ position = Vector2(2, 266)
 [node name="Checkpoints" type="Node" parent="EventData"]
 
 [node name="Marker2D4" type="Marker2D" parent="EventData/Checkpoints"]
-position = Vector2(-3642, 1759)
-rotation = -1.60257
-scale = Vector2(1, 1)
+position = Vector2(-3550, 1674)
+rotation = 0.785398
 
 [node name="Marker2D" type="Marker2D" parent="EventData/Checkpoints"]
 position = Vector2(0, 800)
@@ -151,17 +145,16 @@ position = Vector2(0, -800)
 rotation = 3.14159
 
 [node name="Marker2D3" type="Marker2D" parent="EventData/Checkpoints"]
-position = Vector2(-3588, -800)
-rotation = 2.34031
+position = Vector2(-3516, -682)
+rotation = -0.785398
 
 [node name="Marker2D5" type="Marker2D" parent="EventData/Checkpoints"]
-position = Vector2(3627, 1795)
-rotation = 3.07805
-scale = Vector2(1, 1)
+position = Vector2(3470, 1625)
+rotation = 2.35619
 
 [node name="Marker2D6" type="Marker2D" parent="EventData/Checkpoints"]
-position = Vector2(3609, -785)
-rotation = -0.127076
+position = Vector2(3485, -739)
+rotation = 0.785398
 scale = Vector2(0.999999, 0.999999)
 
 [node name="Cannons" type="Node" parent="EventData"]
