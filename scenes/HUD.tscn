@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://gyjpncn1p0t6"]
+[gd_scene load_steps=10 format=3 uid="uid://6ng51kmtojrt"]
 
 [ext_resource type="Script" path="res://scripts/HUD.gd" id="1_m31br"]
 [ext_resource type="Texture2D" uid="uid://5blgdn0wm5d" path="res://textures/buton_rectangul.png" id="2_7cbkr"]
@@ -132,4 +132,8 @@ offset_right = 454.0
 offset_bottom = -1291.0
 texture = ExtResource("2_7cbkr")
 
+[node name="SecondTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="toggled" from="PauseButton" to="." method="_on_pause_button_toggled"]
+[connection signal="timeout" from="SecondTimer" to="." method="_on_second_timer_timeout"]

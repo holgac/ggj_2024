@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cab8yg03kthhw"]
+[gd_scene load_steps=5 format=3 uid="uid://cab8yg03kthhw"]
 
-[ext_resource type="Texture2D" path="res://textures/monkey_vomit.png" id="1_44ovh"]
-[ext_resource type="Texture2D" path="res://textures/puke_splash.png" id="2_q6w0t"]
+[ext_resource type="Texture2D" uid="uid://c5vsl7d7ls08g" path="res://textures/monkey_vomit.png" id="1_44ovh"]
+[ext_resource type="Script" path="res://scripts/Credits.gd" id="1_a4om7"]
+[ext_resource type="Texture2D" uid="uid://bduaxdi7184ww" path="res://textures/puke_splash.png" id="2_q6w0t"]
+[ext_resource type="Texture2D" uid="uid://b3i7h3c5t7n8e" path="res://textures/playbuton.png" id="3_mrwjq"]
 
 [node name="Credits" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_a4om7")
 
 [node name="Image_5" type="Sprite2D" parent="."]
 position = Vector2(945, 306)
@@ -88,3 +91,15 @@ theme_override_font_sizes/font_size = 50
 text = "Hüseyin Olgaç
 Developer"
 horizontal_alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1703.0
+offset_top = 45.0
+offset_right = 2215.0
+offset_bottom = 557.0
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("3_mrwjq")
+flip_h = true
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
