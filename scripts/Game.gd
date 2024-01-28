@@ -36,8 +36,8 @@ func fill_events_for_first_level():
   subEvents.append({'type': 'wind', 'wait_time': 5, 'duration':3, 'warn': 5})
   subEvents.append({'type': 'cannon', 'wait_time': 30, 'count': 5})
   subEvents.append({'type': 'cannon', 'wait_time': 2, 'count': 5})
-  subEvents.append({'type': 'cannon', 'wait_time': 2, 'count': 5})
-  subEvents.append({'type': 'wind', 'wait_time': 7, 'duration':2, 'warn': 5})
+  subEvents.append({'type': 'cannon', 'wait_time': 2, 'count': 5});
+  subEvents.append({'type': 'wind', 'wait_time': 7, 'duration':2, 'warn': 5});
 
 func _ready():
   fill_events_for_first_level()

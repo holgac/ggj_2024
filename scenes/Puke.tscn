@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://byubg2hpsnjks"]
+
+[ext_resource type="Texture2D" uid="uid://bduaxdi7184ww" path="res://textures/puke_splash.png" id="1_6p01d"]
+[ext_resource type="Script" path="res://scripts/Puke.gd" id="1_vghj7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_42yqt"]
+radius = 110.0
+
+[node name="Puke" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_vghj7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_42yqt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6p01d")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true

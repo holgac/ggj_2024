@@ -11,10 +11,15 @@ class_name GDPlayer
 @export var dash_duration: float = 0.1;
 @onready var max_velocity_squared: float = max_velocity * max_velocity;
 @onready var pukeCooldown = 10.0;
-@export var pukeCooldownRatio = 0.8;
+@export var pukeCooldownRatio = 0.7;
 @export var playerType: String;
 @onready var pukeVelocityCoef = 0.1;
 @onready var anim: AnimatedSprite2D = get_node('AnimatedSprite2D');
+@export var PukeScene: PackedScene;
+@export var puke_count: int = 4;
+@export var puke_cooldown: float = 0.1;
+var last_puke: float = 0;
+var puke_remaining: int = 0;
 
 var pukeMeter: float = 0;
 var dash_cur_cooldown = 0;
@@ -32,7 +37,13 @@ func _ready():
   setAnim('neutral')
 
 func recalculate_face():
-  if pukeMeter > 1000:
+  if pukeMeter > 2000 or puke_remaining > 0:
+    setAnim('dizzy2')
+    if puke_remaining == 0:
+      # new puke!
+      puke_remaining = puke_count;
+      last_puke = 0;
+  elif pukeMeter > 1000:
     setAnim('dizzy2')
   elif pukeMeter > 800:
     setAnim('dizzy')
@@ -57,6 +68,15 @@ func recalculate_face():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
   recalculate_face();
+  last_puke -= delta;
+  if last_puke < 0 and puke_remaining > 0:
+    puke_remaining -= 1
+    last_puke = puke_cooldown
+    var puke: GDPuke = PukeScene.instantiate();
+    puke.transform = transform;
+    get_tree().root.add_child(puke);
+    pukeMeter = 0.0;
+    
 
 func is_dashing():
   return (dash_cooldown - dash_cur_cooldown) < dash_duration
