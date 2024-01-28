@@ -53,9 +53,9 @@ texture = ExtResource("3_o4ia1")
 
 [node name="Player1Score" type="Label" parent="TopUI_Frame/Player1_Frame"]
 layout_mode = 0
-offset_left = 141.0
+offset_left = 57.0
 offset_top = -22.0
-offset_right = 265.0
+offset_right = 285.0
 offset_bottom = 524.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 400
@@ -81,9 +81,9 @@ texture = ExtResource("3_o4ia1")
 
 [node name="Player2Score" type="Label" parent="TopUI_Frame/Player2_Frame"]
 layout_mode = 0
-offset_left = 145.0
+offset_left = 65.0
 offset_top = -28.0
-offset_right = 269.0
+offset_right = 293.0
 offset_bottom = 518.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 400
