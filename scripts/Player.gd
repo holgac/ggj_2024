@@ -34,6 +34,11 @@ func incrementPukeMeter(coef: float = 1.0):
 # Called when the node enters the scene tree for the first time.
 
 func setAnim(animName: String):
+  var newAnim = playerType + '_' + animName;
+  if anim.animation != newAnim:
+    var spr: Sprite2D = get_tree().root.get_node('Game/HUD/TopUI_Frame/' + name + '_image')
+    var texture = ResourceLoader.load('res://face_textures/' + newAnim + '.png')
+    spr.set_texture(texture);
   anim.play(playerType + '_' + animName);
 
 func _ready():
