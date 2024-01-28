@@ -65,6 +65,7 @@ func player_body_entered(body_rid: RID, node: Node, body_shape_idx: int, local_i
         scores[playerTurn.name] += 1
         score_left_for_next_event -= 1
         playerTurn.get_node('Ring').hide();
+        hud.on_score_updated(self);
         if score_left_for_next_event == 0:
           start_next_event()
         else:
@@ -73,7 +74,6 @@ func player_body_entered(body_rid: RID, node: Node, body_shape_idx: int, local_i
           else:
             playerTurn = otherPlayer;
           playerTurn.get_node('Ring').show();
-          hud.on_score_updated(self);
           player_score_change.emit();
   elif node is GDSnowball:
     get_node('PlayerSnowballHitSound').play();

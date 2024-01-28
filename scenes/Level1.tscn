@@ -30,6 +30,8 @@ script = ExtResource("6_7asge")
 PusherScene = ExtResource("7_3o4n1")
 PullerScene = ExtResource("6_6lwmc")
 CheckpointScene = ExtResource("4_76juj")
+events = null
+subEvents = null
 
 [node name="HUD" parent="." instance=ExtResource("2_aidpv")]
 
