@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dbjg3p2m2y0bb"]
+[gd_scene load_steps=3 format=3 uid="uid://cjrywhi3iyl3b"]
 
 [ext_resource type="Texture2D" uid="uid://5blgdn0wm5d" path="res://textures/buton_rectangul.png" id="1_fsou4"]
-[ext_resource type="Texture2D" path="res://textures/buton_rectangular_buyuk.png" id="2_7tr64"]
+[ext_resource type="Texture2D" uid="uid://4o3bqn5vkrj3" path="res://textures/buton_rectangular_buyuk.png" id="2_7tr64"]
 
 [node name="MaimMenu" type="Control"]
 layout_mode = 3
