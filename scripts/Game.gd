@@ -46,6 +46,7 @@ func _ready():
   for player: GDPlayer in get_node('Players').get_children():
     scores[player.name] = 0
     player.connect('body_shape_entered', player_body_entered.bind(player));
+    player.game = self;
   start_next_event();
   start_next_subevent();
 
@@ -53,6 +54,8 @@ func player_body_entered(body_rid: RID, node: Node, body_shape_idx: int, local_i
   if node is GDPlayer:
     get_node('PlayerPlayerHitSound').play();
     var otherPlayer: GDPlayer = node;
+    player.incrementPukeMeter();
+    otherPlayer.incrementPukeMeter();
     if eventIdx != -1 and eventIdx < events.size() and events[eventIdx]['type'] == 'chase':
       scores[playerTurn.name] += 1
       score_left_for_next_event -= 1
@@ -65,10 +68,12 @@ func player_body_entered(body_rid: RID, node: Node, body_shape_idx: int, local_i
       hud.on_score_updated(self);
       player_score_change.emit();
   elif node is GDSnowball:
-    print('snowball hit!');
+    get_node('PlayerSnowballHitSound').play();
     node.queue_free();
+    player.incrementPukeMeter(0.3);
   else:
-    get_node('PlayerEnvironmentHitSound').play();
+    player.incrementPukeMeter(0.6);
+    player.get_node('PlayerEnvironmentHitSound').play();
 
 func remove_pushers(timer: Timer):
   var pusherInstances = get_node('EventNodes/Pushers');

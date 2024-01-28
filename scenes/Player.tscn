@@ -1,7 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://djscnw35pea44"]
+[gd_scene load_steps=22 format=3 uid="uid://djscnw35pea44"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_2d51f"]
-[ext_resource type="Texture2D" uid="uid://bbuustwyeqhjb" path="res://textures/face_monkey.png" id="2_stxc3"]
+[ext_resource type="Texture2D" uid="uid://bsn4ow6qhpsx8" path="res://face_textures/monkey_cry.png" id="2_1f0gc"]
+[ext_resource type="AudioStream" uid="uid://38m8snwqfql7" path="res://audio/foley/playerenv.wav" id="3_7drt1"]
+[ext_resource type="Texture2D" uid="uid://c78dpj4hin3rq" path="res://face_textures/monkey_dizzy.png" id="3_80cuk"]
+[ext_resource type="Texture2D" uid="uid://cerh7dhde6db2" path="res://face_textures/monkey_dizzy2.png" id="4_26hlu"]
+[ext_resource type="Texture2D" uid="uid://dwm284hlrawj3" path="res://face_textures/monkey_laugh.png" id="5_ogj5g"]
+[ext_resource type="Texture2D" uid="uid://bn3qrt5d40fac" path="res://face_textures/monkey_neutral.png" id="6_wi5di"]
+[ext_resource type="Texture2D" uid="uid://cawdkbatxhbpv" path="res://face_textures/monkey_sad.png" id="7_bftwd"]
+[ext_resource type="Texture2D" uid="uid://jmwwwpguxhfu" path="res://face_textures/monkey_tongue.png" id="8_fqwr2"]
+[ext_resource type="Texture2D" uid="uid://d2m4atgeq08fk" path="res://face_textures/monkey_vomit.png" id="9_2gfwi"]
+[ext_resource type="Texture2D" uid="uid://m7soiapjy5qg" path="res://face_textures/ninja_cry.png" id="10_vs3jg"]
+[ext_resource type="Texture2D" uid="uid://bnat1jkwr4bg1" path="res://face_textures/ninja_dizzy.png" id="11_bdbwm"]
+[ext_resource type="Texture2D" uid="uid://bk2v6ujrcg4e8" path="res://face_textures/ninja_dizzy2.png" id="12_5wim7"]
+[ext_resource type="Texture2D" uid="uid://bdf51650aijk4" path="res://face_textures/ninja_laugh.png" id="13_rc1bu"]
+[ext_resource type="Texture2D" uid="uid://bcyo7tyd1kxq7" path="res://face_textures/ninja_neutral.png" id="14_rdat7"]
+[ext_resource type="Texture2D" uid="uid://bhnpe6p6rdp4q" path="res://face_textures/ninja_sad.png" id="15_6c61j"]
+[ext_resource type="Texture2D" uid="uid://r8v6v7va8j0n" path="res://face_textures/ninja_tongue.png" id="16_tt052"]
+[ext_resource type="Texture2D" uid="uid://ba2tt7h15gfr1" path="res://face_textures/ninja_vomit.png" id="17_4nws1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ypydq"]
 friction = 0.0
@@ -14,10 +30,130 @@ radius = 115.0
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_stxc3")
+"texture": ExtResource("2_1f0gc")
 }],
 "loop": true,
-"name": &"default",
+"name": &"monkey_cry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_80cuk")
+}],
+"loop": true,
+"name": &"monkey_dizzy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_26hlu")
+}],
+"loop": true,
+"name": &"monkey_dizzy2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_ogj5g")
+}],
+"loop": true,
+"name": &"monkey_laugh",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_wi5di")
+}],
+"loop": true,
+"name": &"monkey_neutral",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_bftwd")
+}],
+"loop": true,
+"name": &"monkey_sad",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_fqwr2")
+}],
+"loop": true,
+"name": &"monkey_tongue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_2gfwi")
+}],
+"loop": true,
+"name": &"monkey_vomit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_vs3jg")
+}],
+"loop": true,
+"name": &"ninja_cry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_bdbwm")
+}],
+"loop": true,
+"name": &"ninja_dizzy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_5wim7")
+}],
+"loop": true,
+"name": &"ninja_dizzy2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_rc1bu")
+}],
+"loop": true,
+"name": &"ninja_laugh",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_rdat7")
+}],
+"loop": true,
+"name": &"ninja_neutral",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_6c61j")
+}],
+"loop": true,
+"name": &"ninja_sad",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_tt052")
+}],
+"loop": true,
+"name": &"ninja_tongue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_4nws1")
+}],
+"loop": true,
+"name": &"ninja_vomit",
 "speed": 5.0
 }]
 
@@ -34,3 +170,7 @@ shape = SubResource("CircleShape2D_d6jut")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_cbkhv")
+animation = &"monkey_sad"
+
+[node name="PlayerEnvironmentHitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_7drt1")

@@ -31,6 +31,7 @@ func second_timer():
   if next_wind_start == 0:
     wind_cooldown_label.hide()
     get_node('Timer').stop();
+    get_node('WindSound').play();
   else:
     wind_cooldown_label.set_text(str(next_wind_start));
 

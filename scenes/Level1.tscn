@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bqn8taws2e81o"]
+[gd_scene load_steps=19 format=3 uid="uid://bqn8taws2e81o"]
 
 [ext_resource type="PackedScene" uid="uid://djscnw35pea44" path="res://scenes/Player.tscn" id="1_6o3xu"]
 [ext_resource type="Texture2D" uid="uid://fkrw05jmu2bp" path="res://icon.svg" id="2_1lt2v"]
@@ -6,12 +6,15 @@
 [ext_resource type="Script" path="res://scripts/Wind.gd" id="2_c5ggn"]
 [ext_resource type="Texture2D" uid="uid://nn0hdt5i7itj" path="res://textures/ice.jpg" id="2_ujwbj"]
 [ext_resource type="PackedScene" uid="uid://lnp0bpwmnl1k" path="res://scenes/Checkpoint.tscn" id="4_76juj"]
-[ext_resource type="PackedScene" uid="uid://dpjy42knadd2o" path="res://scenes/Player2.tscn" id="4_ovhnt"]
 [ext_resource type="PackedScene" uid="uid://dctwj837036l3" path="res://scenes/Puller.tscn" id="6_6lwmc"]
 [ext_resource type="Script" path="res://scripts/Game.gd" id="6_7asge"]
 [ext_resource type="PackedScene" uid="uid://dqpasymlsem67" path="res://scenes/Pusher.tscn" id="7_3o4n1"]
+[ext_resource type="AudioStream" uid="uid://dy42l5gx82ndx" path="res://audio/foley/wind.wav" id="10_1drlv"]
 [ext_resource type="Texture2D" uid="uid://dhetqxp3hlgab" path="res://textures/windindicater.png" id="12_8840u"]
 [ext_resource type="PackedScene" uid="uid://co08siig2sr7m" path="res://scenes/Cannon.tscn" id="12_r23l0"]
+[ext_resource type="AudioStream" uid="uid://l6gkb3e5m7ly" path="res://audio/foley/playerplayer.wav" id="14_gkm2r"]
+[ext_resource type="AudioStream" uid="uid://djowa8chir31g" path="res://audio/foley/snowballhit.wav" id="15_42qu6"]
+[ext_resource type="PackedScene" uid="uid://bloum6r8r1opx" path="res://scenes/MusicPlayer.tscn" id="16_0clq8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_f7swx"]
 
@@ -93,16 +96,19 @@ texture = ExtResource("12_8840u")
 [node name="Timer" type="Timer" parent="Wind"]
 
 [node name="WindSound" type="AudioStreamPlayer" parent="Wind"]
+stream = ExtResource("10_1drlv")
 
 [node name="Players" type="Node2D" parent="."]
 
 [node name="Player1" parent="Players" instance=ExtResource("1_6o3xu")]
 position = Vector2(300, 0)
 player_id = "p1"
+playerType = "ninja"
 
-[node name="Player2" parent="Players" instance=ExtResource("4_ovhnt")]
-position = Vector2(-321, 0)
+[node name="Player2" parent="Players" instance=ExtResource("1_6o3xu")]
+position = Vector2(300, 0)
 player_id = "p2"
+playerType = "monkey"
 
 [node name="EventData" type="Node" parent="."]
 
@@ -176,8 +182,10 @@ rotation = 6.28318
 [node name="SubEventTimer" type="Timer" parent="."]
 
 [node name="PlayerPlayerHitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_gkm2r")
 
-[node name="PlayerEnvironmentHitSound" type="AudioStreamPlayer" parent="."]
+[node name="PlayerSnowballHitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_42qu6")
 
 [node name="EventNodes" type="Node" parent="."]
 
@@ -186,3 +194,5 @@ rotation = 6.28318
 [node name="Pushers" type="Node" parent="EventNodes"]
 
 [node name="Snowballs" type="Node" parent="EventNodes"]
+
+[node name="MusicPlayer" parent="." instance=ExtResource("16_0clq8")]
