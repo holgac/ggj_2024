@@ -33,3 +33,7 @@ func _on_second_timer_timeout():
       lbl.set_text(str(minute) + ':' + str(second))
     
   pass # Replace with function body.
+
+
+func _on_timer_timeout():
+ get_node('Label').queue_free();

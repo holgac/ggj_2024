@@ -107,7 +107,9 @@ func player_body_entered(body_rid: RID, node: Node, body_shape_idx: int, local_i
       otherPlayer.incrementPukeMeter();
       if eventIdx != -1 and eventIdx < events.size() and events[eventIdx]['type'] == 'chase':
         last_player_hit = player_hit_cooldown;
-        scores[playerTurn.name] += 1
+        for p in scores:
+          if p != playerTurn.name:
+            scores[p] += 1
         score_left_for_next_event -= 1
         playerTurn.get_node('Ring').hide();
         hud.on_score_updated(self);
@@ -140,6 +142,7 @@ func start_pushers(event: Dictionary):
   var timer: Timer = Timer.new();
   timer.set_wait_time(event['duration']);
   timer.connect('timeout', remove_pushers.bind(timer));
+  add_child(timer);
 
 func start_next_subevent():
   if subEventIdx < subEvents.size():

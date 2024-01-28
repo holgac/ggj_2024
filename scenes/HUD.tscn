@@ -135,5 +135,18 @@ texture = ExtResource("2_7cbkr")
 [node name="SecondTimer" type="Timer" parent="."]
 autostart = true
 
+[node name="Label" type="Label" parent="."]
+offset_left = -682.0
+offset_top = -1060.0
+offset_right = 767.0
+offset_bottom = -787.0
+theme_override_font_sizes/font_size = 200
+text = "Chase the RED!"
+
+[node name="Timer" type="Timer" parent="Label"]
+wait_time = 3.0
+autostart = true
+
 [connection signal="toggled" from="PauseButton" to="." method="_on_pause_button_toggled"]
 [connection signal="timeout" from="SecondTimer" to="." method="_on_second_timer_timeout"]
+[connection signal="timeout" from="Label/Timer" to="." method="_on_timer_timeout"]
