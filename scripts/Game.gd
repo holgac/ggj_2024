@@ -30,6 +30,11 @@ func fill_events_for_first_level():
   events.append({'type': 'checkpoint', 'duration': 60, 'score': -1})
 
   # sub events are traps and other stuff that makes the level harder/more interesting
+  for i in range(20):
+    subEvents.append({'type': 'cannon', 'duration': 2, 'count': 1})
+    subEvents.append({'type': 'cannon', 'duration': 2, 'count': 2})
+    subEvents.append({'type': 'cannon', 'duration': 2, 'count': 5})
+  subEvents.append({'type': 'cannon', 'duration': 2, 'count': 7})
   subEvents.append({'type': 'nothing', 'duration': 3})
   subEvents.append({'type': 'wind', 'duration': 7, 'warn': 5})
   subEvents.append({'type': 'pusher', 'duration': 5, 'count': 1})
@@ -72,16 +77,10 @@ func start_next_subevent():
   if subEventIdx < subEvents.size():
     print('Was doing', subEvents[subEventIdx]['type'], 'for ', subEvents[subEventIdx]['duration'])
     match subEvents[subEventIdx]['type']:
-      'wind':
-        pass
       'pusher':
         var pusherInstances = get_node('EventNodes/Pushers');
         for child in pusherInstances.get_children():
           child.queue_free();
-      'nothing':
-        pass
-      _:
-        assert(false, 'unhandled event type!');
   if subEventIdx < subEvents.size():
     subEventIdx += 1
   if subEventIdx < subEvents.size():
@@ -93,6 +92,8 @@ func start_next_subevent():
         spawn_pushers(subEvents[subEventIdx]['count']);
       'nothing':
         pass
+      'cannon':
+        fire_cannon(subEvents[subEventIdx]['count']);
       _:
         assert(false, 'unhandled event type!');
     subEventTimer.set_wait_time(subEvents[subEventIdx]['duration']);
@@ -123,6 +124,13 @@ func start_next_event():
         assert(false);
   else:
     playerTurn = null;
+
+func fire_cannon(count: int):
+  var cannons = get_node('EventData/Cannons').get_children();
+  cannons.shuffle();
+  for i in range(count):
+    var cannon: GDCannon = cannons[i];
+    cannon.fire();
   
 func spawn_pushers(count: int):
   var pusherMarkers = get_node('EventData/Pushers');
@@ -143,7 +151,7 @@ func spawn_new_checkpoint():
   var checkpoint: Node2D = CheckpointScene.instantiate();
   checkpoint.connect('body_entered', on_checkpoint_hit.bind(checkpoint))
   checkpoint.transform = checkpoints.get_child(idx).transform;
-  get_node('EventNodes/Checkpoints').add_child(checkpoint);
+  get_node('EventNodes/Checkpoints').call_deferred('add_child', checkpoint);
   last_checkpoint_score = 0;
 
 func on_checkpoint_hit(player: Node, checkpoint: Node):

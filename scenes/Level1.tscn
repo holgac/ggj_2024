@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bqn8taws2e81o"]
+[gd_scene load_steps=16 format=3 uid="uid://bqn8taws2e81o"]
 
 [ext_resource type="PackedScene" uid="uid://djscnw35pea44" path="res://scenes/Player.tscn" id="1_6o3xu"]
 [ext_resource type="Texture2D" uid="uid://fkrw05jmu2bp" path="res://icon.svg" id="2_1lt2v"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scripts/Game.gd" id="6_7asge"]
 [ext_resource type="PackedScene" uid="uid://dqpasymlsem67" path="res://scenes/Pusher.tscn" id="7_3o4n1"]
 [ext_resource type="Texture2D" uid="uid://dhetqxp3hlgab" path="res://textures/windindicater.png" id="12_8840u"]
+[ext_resource type="PackedScene" uid="uid://co08siig2sr7m" path="res://scenes/Cannon.tscn" id="12_r23l0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_f7swx"]
 
@@ -132,6 +133,44 @@ rotation = 3.14159
 position = Vector2(-3588, -800)
 rotation = 2.34031
 
+[node name="Cannons" type="Node" parent="EventData"]
+
+[node name="Cannon" parent="EventData/Cannons" instance=ExtResource("12_r23l0")]
+position = Vector2(-4523, -793)
+rotation = 1.57079
+
+[node name="Cannon2" parent="EventData/Cannons" instance=ExtResource("12_r23l0")]
+position = Vector2(-4526, -200)
+rotation = 1.57079
+
+[node name="Cannon3" parent="EventData/Cannons" instance=ExtResource("12_r23l0")]
+position = Vector2(-4526, 1689)
+rotation = 1.57079
+
+[node name="Cannon4" parent="EventData/Cannons" instance=ExtResource("12_r23l0")]
+position = Vector2(4525, 559.002)
+rotation = 4.71238
+
+[node name="Cannon5" parent="EventData/Cannons" instance=ExtResource("12_r23l0")]
+position = Vector2(4525, 1226)
+rotation = 4.71238
+
+[node name="Cannon6" parent="EventData/Cannons" instance=ExtResource("12_r23l0")]
+position = Vector2(-2027, 2429)
+rotation = 6.28318
+
+[node name="Cannon7" parent="EventData/Cannons" instance=ExtResource("12_r23l0")]
+position = Vector2(-1166, 2375)
+rotation = 6.28318
+
+[node name="Cannon8" parent="EventData/Cannons" instance=ExtResource("12_r23l0")]
+position = Vector2(1552, 2402)
+rotation = 6.28318
+
+[node name="Cannon9" parent="EventData/Cannons" instance=ExtResource("12_r23l0")]
+position = Vector2(583, 2469)
+rotation = 6.28318
+
 [node name="EventTimer" type="Timer" parent="."]
 
 [node name="SubEventTimer" type="Timer" parent="."]
@@ -145,3 +184,5 @@ rotation = 2.34031
 [node name="Checkpoints" type="Node" parent="EventNodes"]
 
 [node name="Pushers" type="Node" parent="EventNodes"]
+
+[node name="Snowballs" type="Node" parent="EventNodes"]

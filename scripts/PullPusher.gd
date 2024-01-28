@@ -30,11 +30,9 @@ func _ready():
   
 
 func body_entered(body: Node2D):
-  print(body.name, 'entered!')
   bodies.append(body)
 
 func body_exited(body: Node2D):
-  print(body.name, 'exited!')
   bodies.erase(body);
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

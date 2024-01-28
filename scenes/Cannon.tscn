@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://co08siig2sr7m"]
+
+[ext_resource type="Texture2D" uid="uid://t5mb7k7gmqqy" path="res://textures/cannon1.png" id="1_leaok"]
+[ext_resource type="Texture2D" uid="uid://u8imo15jguve" path="res://textures/cannon2.png" id="2_t2f2n"]
+[ext_resource type="Texture2D" uid="uid://bx4guraga77" path="res://textures/cannon3.png" id="3_ega4n"]
+[ext_resource type="Texture2D" uid="uid://csxnogog6646w" path="res://textures/cannon4.png" id="4_u4hhv"]
+[ext_resource type="Script" path="res://scripts/Cannon.gd" id="5_kdyp3"]
+[ext_resource type="PackedScene" uid="uid://bjc1vac7x6xn7" path="res://scenes/Snowball.tscn" id="6_sqck6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iroqb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_leaok")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_t2f2n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ega4n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_u4hhv")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_leaok")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Cannon" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_iroqb")
+animation = &"idle"
+script = ExtResource("5_kdyp3")
+SnowballScene = ExtResource("6_sqck6")
+
+[node name="Barrel" type="Node2D" parent="."]
+position = Vector2(0, -200)
