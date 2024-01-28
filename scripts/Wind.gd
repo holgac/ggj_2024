@@ -29,7 +29,6 @@ func _ready():
 func second_timer():
   next_wind_start -= 1
   if next_wind_start == 0:
-    wind_indicator.show()
     wind_cooldown_label.hide()
     get_node('Timer').stop();
   else:
@@ -46,6 +45,7 @@ func start_wind(start_in: float, duration: float, direction: Vector2 = Vector2.Z
   wind_indicator.look_at(wind_indicator.global_position + wind_direction)
   get_node('Timer').start();
   wind_cooldown_label.set_text(str(next_wind_start));
+  wind_indicator.show()
 
 func _process(delta):
   if next_wind_start == 0 and wind_time_left > 0:

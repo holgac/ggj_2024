@@ -30,20 +30,14 @@ func fill_events_for_first_level():
   events.append({'type': 'checkpoint', 'duration': 60, 'score': -1})
 
   # sub events are traps and other stuff that makes the level harder/more interesting
-  for i in range(20):
-    subEvents.append({'type': 'cannon', 'duration': 2, 'count': 1})
-    subEvents.append({'type': 'cannon', 'duration': 2, 'count': 2})
-    subEvents.append({'type': 'cannon', 'duration': 2, 'count': 5})
-  subEvents.append({'type': 'cannon', 'duration': 2, 'count': 7})
-  subEvents.append({'type': 'nothing', 'duration': 3})
-  subEvents.append({'type': 'wind', 'duration': 7, 'warn': 5})
-  subEvents.append({'type': 'pusher', 'duration': 5, 'count': 1})
-  subEvents.append({'type': 'nothing', 'duration': 3})
-  subEvents.append({'type': 'wind', 'duration': 7, 'warn': 5})
-  subEvents.append({'type': 'pusher', 'duration': 5, 'count': 2})
-  subEvents.append({'type': 'nothing', 'duration': 3})
-  subEvents.append({'type': 'wind', 'duration': 7, 'warn': 5})
-  subEvents.append({'type': 'pusher', 'duration': 5, 'count': 3})
+  subEvents.append({'type': 'pusher', 'wait_time': 1, 'duration': 60, 'count': 4})
+  for i in range(60):
+    subEvents.append({'type': 'cannon', 'wait_time': 1, 'count': 1 + (i%4)});
+  subEvents.append({'type': 'wind', 'wait_time': 5, 'duration':3, 'warn': 5})
+  subEvents.append({'type': 'cannon', 'wait_time': 30, 'count': 5})
+  subEvents.append({'type': 'cannon', 'wait_time': 2, 'count': 5})
+  subEvents.append({'type': 'cannon', 'wait_time': 2, 'count': 5})
+  subEvents.append({'type': 'wind', 'wait_time': 7, 'duration':2, 'warn': 5})
 
 func _ready():
   fill_events_for_first_level()
@@ -70,34 +64,44 @@ func player_body_entered(body_rid: RID, node: Node, body_shape_idx: int, local_i
         playerTurn = otherPlayer;
       hud.on_score_updated(self);
       player_score_change.emit();
+  elif node is GDSnowball:
+    print('snowball hit!');
+    node.queue_free();
   else:
     get_node('PlayerEnvironmentHitSound').play();
 
+func remove_pushers(timer: Timer):
+  var pusherInstances = get_node('EventNodes/Pushers');
+  for child in pusherInstances.get_children():
+    child.queue_free();
+  timer.queue_free();
+
+func start_pushers(event: Dictionary):
+  spawn_pushers(event['count']);
+  var timer: Timer = Timer.new();
+  timer.set_wait_time(event['duration']);
+  timer.connect('timeout', remove_pushers.bind(timer));
+
 func start_next_subevent():
-  if subEventIdx < subEvents.size():
-    print('Was doing', subEvents[subEventIdx]['type'], 'for ', subEvents[subEventIdx]['duration'])
-    match subEvents[subEventIdx]['type']:
-      'pusher':
-        var pusherInstances = get_node('EventNodes/Pushers');
-        for child in pusherInstances.get_children():
-          child.queue_free();
   if subEventIdx < subEvents.size():
     subEventIdx += 1
   if subEventIdx < subEvents.size():
-    print('Now doing', subEvents[subEventIdx]['type'], 'for ', subEvents[subEventIdx]['duration'])
     match subEvents[subEventIdx]['type']:
       'wind':
-        wind.start_wind(subEvents[subEventIdx]['warn'], subEvents[subEventIdx]['duration'] - subEvents[subEventIdx]['warn']);
+        wind.start_wind(subEvents[subEventIdx]['warn'], subEvents[subEventIdx]['duration']);
       'pusher':
-        spawn_pushers(subEvents[subEventIdx]['count']);
+        start_pushers(subEvents[subEventIdx])
       'nothing':
         pass
       'cannon':
         fire_cannon(subEvents[subEventIdx]['count']);
       _:
         assert(false, 'unhandled event type!');
-    subEventTimer.set_wait_time(subEvents[subEventIdx]['duration']);
-    subEventTimer.start();
+    if subEvents[subEventIdx]['wait_time'] == 0:
+      start_next_subevent();
+    else:
+      subEventTimer.set_wait_time(subEvents[subEventIdx]['wait_time']);
+      subEventTimer.start();
 
 func start_next_event():
   if eventIdx < events.size():

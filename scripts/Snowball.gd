@@ -1,15 +1,16 @@
-extends Area2D
+extends RigidBody2D
 class_name GDSnowball;
 
-@export var speed: float = 1000;
+@export var speed: float = 5000;
 @export var direction: Vector2 = Vector2.ZERO;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
   connect('body_shape_entered', body_shape_entered)
+  apply_impulse(direction * speed)
 
 func _physics_process(delta):
-  translate(direction * speed * delta);
+  # translate(direction * speed * delta);
   # translate();
   # TODO: do this in a better way after waking up
   if position.length_squared() > 20000 * 20000:

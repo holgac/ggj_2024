@@ -1,10 +1,42 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqpasymlsem67"]
+[gd_scene load_steps=11 format=3 uid="uid://dqpasymlsem67"]
 
 [ext_resource type="Script" path="res://scripts/PullPusher.gd" id="1_qn221"]
 [ext_resource type="Texture2D" uid="uid://drxv1jf37t6gr" path="res://textures/pusher.png" id="2_0qmeg"]
+[ext_resource type="Texture2D" uid="uid://ct7ncon2kvev5" path="res://textures/dalga1.png" id="3_8oc8f"]
+[ext_resource type="Texture2D" uid="uid://cujv0ns0ngwo1" path="res://textures/dalga2.png" id="4_u702x"]
+[ext_resource type="Texture2D" uid="uid://ccvo5xaerckp" path="res://textures/dalga3.png" id="5_arrts"]
+[ext_resource type="Texture2D" uid="uid://chxyld1nwpljp" path="res://textures/dalga4.png" id="6_etxmk"]
+[ext_resource type="Texture2D" uid="uid://ct8n6aub6c3p2" path="res://textures/dalga5.png" id="7_qooyv"]
+[ext_resource type="Texture2D" uid="uid://ds50a0w7rjg3x" path="res://textures/dalga6.png" id="8_6c5p4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uopn5"]
 radius = 700.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y7h5e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_8oc8f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_u702x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_arrts")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_etxmk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_qooyv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_6c5p4")
+}],
+"loop": true,
+"name": &"wave",
+"speed": 5.0
+}]
 
 [node name="Pusher" type="Node2D"]
 position = Vector2(1500, 500)
@@ -18,7 +50,19 @@ texture = ExtResource("2_0qmeg")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 2
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_uopn5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_y7h5e")
+animation = &"wave"
+frame = 3
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_y7h5e")
+animation = &"wave"
+frame_progress = 0.555489
