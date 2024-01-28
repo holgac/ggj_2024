@@ -25,7 +25,7 @@ func _ready():
     scores[player.name] = 0
     player.connect('body_shape_entered', player_body_entered.bind(player));
   start_next_event();
-  # wind.start_wind(2, 5);
+  wind.start_wind(2, 5);
 
 #func player_body_entered(player: GDPlayer, node: Node):
 func player_body_entered(body_rid: RID, node: Node, body_shape_idx: int, local_idx: int, player: GDPlayer):
