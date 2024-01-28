@@ -27,6 +27,9 @@ func _on_second_timer_timeout():
   else:
     var minute = int(time_left / 60)
     var second = time_left % 60;
-    lbl.set_text(str(minute) + ':' + str(second))
+    if second < 10:
+      lbl.set_text(str(minute) + ':0' + str(second))
+    else:
+      lbl.set_text(str(minute) + ':' + str(second))
     
   pass # Replace with function body.

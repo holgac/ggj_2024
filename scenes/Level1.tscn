@@ -30,8 +30,6 @@ script = ExtResource("6_7asge")
 PusherScene = ExtResource("7_3o4n1")
 PullerScene = ExtResource("6_6lwmc")
 CheckpointScene = ExtResource("4_76juj")
-events = null
-subEvents = null
 
 [node name="HUD" parent="." instance=ExtResource("2_aidpv")]
 
@@ -107,14 +105,14 @@ stream = ExtResource("10_1drlv")
 
 [node name="Player1" parent="Players" instance=ExtResource("1_6o3xu")]
 position = Vector2(-500, 0)
-player_id = "p1"
-playerType = "ninja"
+player_id = "p2"
+playerType = "monkey"
 PukeScene = ExtResource("12_mu81r")
 
 [node name="Player2" parent="Players" instance=ExtResource("1_6o3xu")]
 position = Vector2(500, 0)
-player_id = "p2"
-playerType = "monkey"
+player_id = "p1"
+playerType = "ninja"
 PukeScene = ExtResource("12_mu81r")
 
 [node name="EventData" type="Node" parent="."]
