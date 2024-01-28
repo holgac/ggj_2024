@@ -1,71 +1,130 @@
-[gd_scene load_steps=7 format=3 uid="uid://gyjpncn1p0t6"]
+[gd_scene load_steps=10 format=3 uid="uid://gyjpncn1p0t6"]
 
 [ext_resource type="Script" path="res://scripts/HUD.gd" id="1_m31br"]
-[ext_resource type="Texture2D" uid="uid://drxv1jf37t6gr" path="res://textures/pusher.png" id="2_h2ni8"]
-[ext_resource type="Texture2D" uid="uid://ck74cixkv4sel" path="res://textures/puller.png" id="3_qagsv"]
+[ext_resource type="Texture2D" uid="uid://5blgdn0wm5d" path="res://textures/buton_rectangul.png" id="2_7cbkr"]
+[ext_resource type="Texture2D" uid="uid://4o3bqn5vkrj3" path="res://textures/buton_rectangular_buyuk.png" id="3_cwrim"]
+[ext_resource type="Texture2D" uid="uid://dou4tj5op6ptq" path="res://textures/buton_pink.png" id="3_o4ia1"]
 [ext_resource type="Texture2D" uid="uid://bvo560wej1oli" path="res://textures/face_neutral.png" id="4_bkjvp"]
 [ext_resource type="Texture2D" uid="uid://bbuustwyeqhjb" path="res://textures/face_monkey.png" id="5_6ht4q"]
+[ext_resource type="Texture2D" uid="uid://cmi03nvgakxm4" path="res://textures/pausebuton.png" id="6_a0xo5"]
 [ext_resource type="Texture2D" uid="uid://c6mffhqb5b80n" path="res://textures/r_frame.png" id="6_qnp6s"]
+[ext_resource type="Texture2D" uid="uid://b3i7h3c5t7n8e" path="res://textures/playbuton.png" id="7_puw3e"]
 
 [node name="HUD" type="Node"]
 process_mode = 3
 script = ExtResource("1_m31br")
 
-[node name="WindCooldown" type="Label" parent="."]
-offset_left = 538.0
-offset_top = -1660.0
-offset_right = 701.0
-offset_bottom = -1387.0
-theme_override_font_sizes/font_size = 200
+[node name="WindCountdown_Frame" type="TextureRect" parent="."]
+modulate = Color(1, 0.890196, 0.890196, 1)
+custom_minimum_size = Vector2(256, 256)
+offset_left = 469.0
+offset_top = -1673.0
+offset_right = 981.0
+offset_bottom = -1161.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("3_o4ia1")
+
+[node name="WindCooldown" type="Label" parent="WindCountdown_Frame"]
+modulate = Color(1, 0.901961, 0.901961, 1)
+offset_left = 166.667
+offset_top = -11.6666
+offset_right = 371.667
+offset_bottom = 479.333
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 360
 text = "5"
 
-[node name="Player1Score" type="Label" parent="."]
-offset_left = -2258.0
-offset_top = -2320.0
-offset_right = -2030.0
-offset_bottom = -1774.0
+[node name="TopUI_Frame" type="TextureRect" parent="."]
+modulate = Color(0.976471, 0.968627, 0.960784, 1)
+offset_left = -3251.0
+offset_top = -2836.0
+offset_right = 3357.0
+offset_bottom = -1621.0
+texture = ExtResource("3_cwrim")
+
+[node name="Player1_Frame" type="TextureRect" parent="TopUI_Frame"]
+offset_left = 1152.0
+offset_top = 333.0
+offset_right = 1664.0
+offset_bottom = 845.0
+texture = ExtResource("3_o4ia1")
+
+[node name="Player1Score" type="Label" parent="TopUI_Frame/Player1_Frame"]
+offset_left = 141.0
+offset_top = -22.0
+offset_right = 369.0
+offset_bottom = 524.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 400
 text = "0"
 
-[node name="Player2Score" type="Label" parent="."]
-offset_left = 2140.0
-offset_top = -2321.0
-offset_right = 2368.0
-offset_bottom = -1775.0
-theme_override_font_sizes/font_size = 400
-text = "0"
-
-[node name="PauseButton" type="TextureButton" parent="."]
-offset_left = -4641.0
-offset_top = -2178.0
-offset_right = -4385.0
-offset_bottom = -1922.0
-toggle_mode = true
-texture_normal = ExtResource("2_h2ni8")
-texture_pressed = ExtResource("3_qagsv")
-
-[node name="Char_1_image" type="Sprite2D" parent="."]
-position = Vector2(-2675, -2294)
+[node name="Char_1_image" type="Sprite2D" parent="TopUI_Frame"]
+position = Vector2(823, 573)
 scale = Vector2(2, 2)
 texture = ExtResource("4_bkjvp")
 
-[node name="Char_2_image" type="Sprite2D" parent="."]
-position = Vector2(2763, -2329)
+[node name="Char_2_image" type="Sprite2D" parent="TopUI_Frame"]
+position = Vector2(5742, 568)
 scale = Vector2(2, 2)
 texture = ExtResource("5_6ht4q")
 
-[node name="GameCountdown" type="Label" parent="."]
-offset_left = -1045.0
-offset_top = -2552.0
-offset_right = 1063.0
-offset_bottom = -1939.0
+[node name="Player2_Frame" type="TextureRect" parent="TopUI_Frame"]
+layout_mode = 0
+offset_left = 4894.0
+offset_top = 334.0
+offset_right = 5406.0
+offset_bottom = 846.0
+texture = ExtResource("3_o4ia1")
+
+[node name="Player2Score" type="Label" parent="TopUI_Frame/Player2_Frame"]
+offset_left = 145.0
+offset_top = -28.0
+offset_right = 373.0
+offset_bottom = 518.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 400
+text = "0"
+
+[node name="Countdown_Frame" type="TextureRect" parent="TopUI_Frame"]
+visible = false
+layout_mode = 0
+offset_left = 2577.0
+offset_top = 373.0
+offset_right = 3954.0
+offset_bottom = 885.0
+texture = ExtResource("3_o4ia1")
+
+[node name="GameCountdown" type="Label" parent="TopUI_Frame"]
+offset_left = 2206.0
+offset_top = 300.0
+offset_right = 4314.0
+offset_bottom = 913.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 450
 text = "5:00"
 horizontal_alignment = 1
 
-[node name="TopUI_Frame" type="Sprite2D" parent="."]
+[node name="PauseButton" type="TextureButton" parent="."]
+modulate = Color(0.635294, 1, 0.6, 1)
+offset_left = 3670.0
+offset_top = -2466.0
+offset_right = 4182.0
+offset_bottom = -1954.0
+toggle_mode = true
+texture_normal = ExtResource("6_a0xo5")
+texture_pressed = ExtResource("7_puw3e")
+
+[node name="playarea" type="Sprite2D" parent="."]
 position = Vector2(-230.5, 1035.5)
 scale = Vector2(12.8898, 10.1958)
 texture = ExtResource("6_qnp6s")
+
+[node name="Wind_UI" type="TextureRect" parent="."]
+modulate = Color(0.709804, 1, 0.752941, 1)
+offset_left = -439.0
+offset_top = -1735.0
+offset_right = 454.0
+offset_bottom = -1291.0
+texture = ExtResource("2_7cbkr")
 
 [connection signal="toggled" from="PauseButton" to="." method="_on_pause_button_toggled"]

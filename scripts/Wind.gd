@@ -10,7 +10,7 @@ class_name GDWind
 @export var min_wind_duration: int = 4;
 @export var max_wind_duration: int = 10;
 
-@onready var wind_cooldown_label: Label = get_node("../HUD/WindCooldown")
+@onready var wind_cooldown_label: Label = get_node("../HUD/WindCountdown_Frame/WindCooldown")
 @onready var wind_indicator: Node2D = get_node("Sprite2D")
 @onready var players: Node2D = get_node("../Players")
 var wind_time_left = 0;

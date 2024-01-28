@@ -6,7 +6,7 @@ func _ready():
 
 func on_score_updated(game: GDGame):
   for player in game.scores:
-    var label: Label = get_node(player + 'Score');
+    var label: Label = get_node('TopUI_Frame/' + player + '_Frame/' + player + 'Score');
     label.set_text(str(game.scores[player]))
 
 

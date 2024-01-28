@@ -1,0 +1,87 @@
+[gd_scene load_steps=3 format=3 uid="uid://byctb1700mgkw"]
+
+[ext_resource type="Texture2D" uid="uid://c5vsl7d7ls08g" path="res://textures/monkey_vomit.png" id="1_44ovh"]
+[ext_resource type="Texture2D" uid="uid://bduaxdi7184ww" path="res://textures/puke_splash.png" id="2_q6w0t"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Image_5" type="Sprite2D" parent="."]
+position = Vector2(945, 306)
+scale = Vector2(2.30859, 2.14844)
+texture = ExtResource("1_44ovh")
+
+[node name="Image_1" type="Sprite2D" parent="."]
+modulate = Color(1, 0.780392, 0.780392, 1)
+position = Vector2(272, 804)
+scale = Vector2(2.3, 2.3)
+texture = ExtResource("2_q6w0t")
+
+[node name="Image_2" type="Sprite2D" parent="."]
+modulate = Color(1, 0.780392, 0.780392, 1)
+position = Vector2(713, 807)
+scale = Vector2(2.3, 2.3)
+texture = ExtResource("2_q6w0t")
+
+[node name="Image_3" type="Sprite2D" parent="."]
+modulate = Color(1, 0.780392, 0.780392, 1)
+position = Vector2(1133, 807)
+scale = Vector2(2.3, 2.3)
+texture = ExtResource("2_q6w0t")
+
+[node name="Image_4" type="Sprite2D" parent="."]
+modulate = Color(1, 0.780392, 0.780392, 1)
+position = Vector2(1608, 812)
+scale = Vector2(2.3, 2.3)
+texture = ExtResource("2_q6w0t")
+
+[node name="Label_1" type="Label" parent="."]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 775.0
+offset_right = 416.0
+offset_bottom = 916.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Asena Ersoy
+Designer"
+horizontal_alignment = 1
+
+[node name="Label_2" type="Label" parent="."]
+offset_left = 522.0
+offset_top = 774.0
+offset_right = 839.0
+offset_bottom = 915.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Berfin Göncü
+Art"
+horizontal_alignment = 1
+
+[node name="Label_3" type="Label" parent="."]
+offset_left = 953.0
+offset_top = 772.0
+offset_right = 1324.0
+offset_bottom = 913.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Cem Celal Bilge
+Sound"
+horizontal_alignment = 1
+
+[node name="Label_4" type="Label" parent="."]
+offset_left = 1433.0
+offset_top = 775.0
+offset_right = 1777.0
+offset_bottom = 916.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Hüseyin Olgaç
+Developer"
+horizontal_alignment = 1
