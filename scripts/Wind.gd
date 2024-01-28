@@ -18,7 +18,6 @@ var wind_time_left = 0;
 var next_wind_start: int = initial_wind_start;
 var wind_direction: Vector2 = Vector2.ZERO;
 
-
 var rng = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.

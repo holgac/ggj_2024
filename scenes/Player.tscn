@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://djscnw35pea44"]
+[gd_scene load_steps=25 format=3 uid="uid://djscnw35pea44"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_2d51f"]
 [ext_resource type="Texture2D" uid="uid://bsn4ow6qhpsx8" path="res://face_textures/monkey_cry.png" id="2_1f0gc"]
+[ext_resource type="Texture2D" uid="uid://bltrndwdiwmv4" path="res://textures/ring.png" id="2_4bx3n"]
 [ext_resource type="AudioStream" uid="uid://38m8snwqfql7" path="res://audio/foley/playerenv.wav" id="3_7drt1"]
 [ext_resource type="Texture2D" uid="uid://c78dpj4hin3rq" path="res://face_textures/monkey_dizzy.png" id="3_80cuk"]
 [ext_resource type="Texture2D" uid="uid://cerh7dhde6db2" path="res://face_textures/monkey_dizzy2.png" id="4_26hlu"]
@@ -185,6 +186,11 @@ script = ExtResource("1_2d51f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_d6jut")
+
+[node name="Ring" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("2_4bx3n")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_cbkhv")

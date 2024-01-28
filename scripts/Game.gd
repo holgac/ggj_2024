@@ -45,29 +45,36 @@ func _ready():
   eventTimer.connect('timeout', start_next_event);
   subEventTimer.connect('timeout', start_next_subevent);
   for player: GDPlayer in get_node('Players').get_children():
-    scores[player.name] = 0
+    scores[player.name] = 0 
     player.connect('body_shape_entered', player_body_entered.bind(player));
     player.game = self;
   start_next_event();
   start_next_subevent();
 
+var last_player_hit = 0;
+var player_hit_cooldown = 0.2;
 func player_body_entered(body_rid: RID, node: Node, body_shape_idx: int, local_idx: int, player: GDPlayer):
   if node is GDPlayer:
-    get_node('PlayerPlayerHitSound').play();
-    var otherPlayer: GDPlayer = node;
-    player.incrementPukeMeter();
-    otherPlayer.incrementPukeMeter();
-    if eventIdx != -1 and eventIdx < events.size() and events[eventIdx]['type'] == 'chase':
-      scores[playerTurn.name] += 1
-      score_left_for_next_event -= 1
-      if score_left_for_next_event == 0:
-        start_next_event()
-      if otherPlayer == playerTurn:
-        playerTurn = player;
-      else:
-        playerTurn = otherPlayer;
-      hud.on_score_updated(self);
-      player_score_change.emit();
+    if last_player_hit < 0:
+      get_node('PlayerPlayerHitSound').play();
+      var otherPlayer: GDPlayer = node;
+      player.incrementPukeMeter();
+      otherPlayer.incrementPukeMeter();
+      if eventIdx != -1 and eventIdx < events.size() and events[eventIdx]['type'] == 'chase':
+        last_player_hit = player_hit_cooldown;
+        scores[playerTurn.name] += 1
+        score_left_for_next_event -= 1
+        playerTurn.get_node('Ring').hide();
+        if score_left_for_next_event == 0:
+          start_next_event()
+        else:
+          if otherPlayer == playerTurn:
+            playerTurn = player;
+          else:
+            playerTurn = otherPlayer;
+          playerTurn.get_node('Ring').show();
+          hud.on_score_updated(self);
+          player_score_change.emit();
   elif node is GDSnowball:
     get_node('PlayerSnowballHitSound').play();
     node.queue_free();
@@ -119,6 +126,7 @@ func start_next_event():
         for child in get_node('EventNodes/Checkpoints').get_children():
           child.queue_free();
         playerTurn = get_node('Players').get_child(0);
+        playerTurn.get_node('Ring').show();
         var otherPlayer = get_node('Players').get_child(1);
         if events[eventIdx]['duration'] > 0:
           eventTimer.set_wait_time(events[eventIdx]['duration']);
@@ -126,6 +134,7 @@ func start_next_event():
         score_left_for_next_event = events[eventIdx]['score']
       'checkpoint':
         # TODO: remove red circle from other player
+        playerTurn.get_node('Ring').hide();
         playerTurn = null;
         assert(events[eventIdx]['duration'] > 0, 'checkpoint duration should be positive');
         spawn_new_checkpoint();
@@ -134,6 +143,8 @@ func start_next_event():
       _:
         assert(false);
   else:
+    if playerTurn:
+      playerTurn.get_node('Ring').hide();
     playerTurn = null;
 
 func fire_cannon(count: int):
@@ -176,3 +187,4 @@ func on_checkpoint_hit(player: Node, checkpoint: Node):
 
 func _process(delta: float):
   last_checkpoint_score += delta;
+  last_player_hit -= delta;
