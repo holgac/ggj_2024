@@ -143,6 +143,7 @@ func start_pushers(event: Dictionary):
   timer.set_wait_time(event['duration']);
   timer.connect('timeout', remove_pushers.bind(timer));
   add_child(timer);
+  timer.start();
 
 func start_next_subevent():
   if subEventIdx < subEvents.size():

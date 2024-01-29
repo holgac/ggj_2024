@@ -5,7 +5,6 @@ var bodies: Array[Node2D] = [];
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-  var area: Area2D = get_node('Area2D');
   connect('body_entered', body_entered)
   connect('body_exited', body_exited)
   get_node('Timer').connect('timeout', queue_free);
